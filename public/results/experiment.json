@@ -1,0 +1,2883 @@
+{
+  "generatedAt": "2026-10-10T08:39:44.793Z",
+  "seed": 20260930,
+  "horizon_s": 7200,
+  "warmup_s": 900,
+  "policies": {
+    "graded": {
+      "id": "s1_graded",
+      "name": "S1 分级管理模式",
+      "desc": "三类无人机使用各自专属场地与通道；放行间隔按各机型安全标准分别计算",
+      "rule": "per-class"
+    },
+    "pooledConservative": {
+      "id": "s2a_pooled_conservative",
+      "name": "S2 混合管理模式（统一保守规则）",
+      "desc": "全部机型共用同一片通用场地与通道；放行间隔统一取最保守机型的标准（12 s）",
+      "rule": "uniform-conservative"
+    },
+    "pooledNaive": {
+      "id": "s2b_pooled_naive",
+      "name": "S2 混合管理模式（统一经验规则）",
+      "desc": "全部机型共用同一片通用场地与通道；放行间隔统一取经验值 4 s，未区分机型速度差异",
+      "rule": "uniform-naive"
+    }
+  },
+  "load_levels": [
+    0.6,
+    1,
+    1.5,
+    2
+  ],
+  "results": [
+    {
+      "scenario": {
+        "id": "s1_graded",
+        "policyId": "graded",
+        "name": "S1 分级管理模式",
+        "short": "分级模式",
+        "load": 0.6,
+        "rule": "per-class"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 6,
+        "heavy": 2,
+        "cargo": 1
+      },
+      "totals": {
+        "sorties": 331,
+        "throughput_per_h": 189.1,
+        "avg_delay_s": 1.1,
+        "p95_delay_s": 9.8,
+        "conflicts": 1,
+        "conflicts_air": 1,
+        "conflicts_ground": 0,
+        "severe_conflicts": 1,
+        "conflicts_per_1000_sorties": 3.02,
+        "pad_utilization_pct": 13.1,
+        "energy_kwh_per_h": 2.3,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 0,
+          "飞手违规": 1
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 6,
+          "sorties": 275,
+          "throughput_per_h": 157.1,
+          "avg_delay_s": 1.1,
+          "p95_delay_s": 9.6,
+          "avg_wait_depart_s": 0.7,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 137.1,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 2,
+          "sorties": 47,
+          "throughput_per_h": 26.9,
+          "avg_delay_s": 1.3,
+          "p95_delay_s": 12.3,
+          "avg_wait_depart_s": 0.3,
+          "avg_wait_arrive_s": 1,
+          "avg_cycle_s": 265.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 1,
+          "sorties": 9,
+          "throughput_per_h": 5.1,
+          "avg_delay_s": 0,
+          "p95_delay_s": 0,
+          "avg_wait_depart_s": 0,
+          "avg_wait_arrive_s": 0,
+          "avg_cycle_s": 690,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "micro": {
+          "pads": 12,
+          "utilization_pct": 11.2
+        },
+        "heavy": {
+          "pads": 4,
+          "utilization_pct": 22.4
+        },
+        "cargo": {
+          "pads": 2,
+          "utilization_pct": 6.4
+        }
+      },
+      "channels": {
+        "L-M1": {
+          "label": "微坪通道 1",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 364,
+          "utilization_pct": 46.2
+        },
+        "L-M2": {
+          "label": "微坪通道 2",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 187,
+          "utilization_pct": 23.7
+        },
+        "L-H1": {
+          "label": "重坪通道",
+          "owner": "heavy",
+          "kind": "lane",
+          "grants": 96,
+          "utilization_pct": 18.1
+        },
+        "RWY": {
+          "label": "货运跑道",
+          "owner": "cargo",
+          "kind": "runway",
+          "grants": 18,
+          "utilization_pct": 26
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0001",
+          "t": 3336.222,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "H-01（飞手）",
+          "basis": [
+            "H-01: 放行时刻偏离 +12.22s（指令 3324s，实际 3336.222s）"
+          ],
+          "chain": [
+            "CMD-0352",
+            "EXE-0350",
+            "CMD-0349",
+            "EXE-0351",
+            "CFT-0001"
+          ]
+        }
+      ],
+      "runtime_ms": 63
+    },
+    {
+      "scenario": {
+        "id": "s1_graded",
+        "policyId": "graded",
+        "name": "S1 分级管理模式",
+        "short": "分级模式",
+        "load": 1,
+        "rule": "per-class"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 540,
+        "throughput_per_h": 308.6,
+        "avg_delay_s": 5.6,
+        "p95_delay_s": 36,
+        "conflicts": 1,
+        "conflicts_air": 1,
+        "conflicts_ground": 0,
+        "severe_conflicts": 0,
+        "conflicts_per_1000_sorties": 1.85,
+        "pad_utilization_pct": 22.6,
+        "energy_kwh_per_h": 3.6,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 0,
+          "飞手违规": 1
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 459,
+          "throughput_per_h": 262.3,
+          "avg_delay_s": 1.4,
+          "p95_delay_s": 11.2,
+          "avg_wait_depart_s": 0.9,
+          "avg_wait_arrive_s": 0.5,
+          "avg_cycle_s": 137.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 63,
+          "throughput_per_h": 36,
+          "avg_delay_s": 37.5,
+          "p95_delay_s": 53.5,
+          "avg_wait_depart_s": 36.8,
+          "avg_wait_arrive_s": 0.6,
+          "avg_cycle_s": 301.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 18,
+          "throughput_per_h": 10.3,
+          "avg_delay_s": 0,
+          "p95_delay_s": 0,
+          "avg_wait_depart_s": 0,
+          "avg_wait_arrive_s": 0,
+          "avg_cycle_s": 690,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "micro": {
+          "pads": 12,
+          "utilization_pct": 18.8
+        },
+        "heavy": {
+          "pads": 4,
+          "utilization_pct": 39
+        },
+        "cargo": {
+          "pads": 2,
+          "utilization_pct": 12.9
+        }
+      },
+      "channels": {
+        "L-M1": {
+          "label": "微坪通道 1",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 527,
+          "utilization_pct": 66.9
+        },
+        "L-M2": {
+          "label": "微坪通道 2",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 391,
+          "utilization_pct": 49.7
+        },
+        "L-H1": {
+          "label": "重坪通道",
+          "owner": "heavy",
+          "kind": "lane",
+          "grants": 126,
+          "utilization_pct": 24
+        },
+        "RWY": {
+          "label": "货运跑道",
+          "owner": "cargo",
+          "kind": "runway",
+          "grants": 36,
+          "utilization_pct": 52.5
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0001",
+          "t": 6477.5,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-02（飞手）",
+          "basis": [
+            "M-02: 放行时刻偏离 +7.27s（指令 6469.916s，实际 6477.191s）"
+          ],
+          "chain": [
+            "CMD-1099",
+            "EXE-1100",
+            "CMD-1100",
+            "EXE-1101",
+            "CFT-0001"
+          ]
+        }
+      ],
+      "runtime_ms": 42
+    },
+    {
+      "scenario": {
+        "id": "s1_graded",
+        "policyId": "graded",
+        "name": "S1 分级管理模式",
+        "short": "分级模式",
+        "load": 1.5,
+        "rule": "per-class"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 15,
+        "heavy": 5,
+        "cargo": 3
+      },
+      "totals": {
+        "sorties": 798,
+        "throughput_per_h": 456,
+        "avg_delay_s": 14.9,
+        "p95_delay_s": 67,
+        "conflicts": 8,
+        "conflicts_air": 8,
+        "conflicts_ground": 0,
+        "severe_conflicts": 4,
+        "conflicts_per_1000_sorties": 10.03,
+        "pad_utilization_pct": 39.2,
+        "energy_kwh_per_h": 5.4,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 0,
+          "飞手违规": 8
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 15,
+          "sorties": 675,
+          "throughput_per_h": 385.7,
+          "avg_delay_s": 4.8,
+          "p95_delay_s": 14.7,
+          "avg_wait_depart_s": 3.6,
+          "avg_wait_arrive_s": 1.2,
+          "avg_cycle_s": 140.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 5,
+          "sorties": 99,
+          "throughput_per_h": 56.6,
+          "avg_delay_s": 61.4,
+          "p95_delay_s": 71.3,
+          "avg_wait_depart_s": 59.7,
+          "avg_wait_arrive_s": 1.8,
+          "avg_cycle_s": 325.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 3,
+          "sorties": 24,
+          "throughput_per_h": 13.7,
+          "avg_delay_s": 107.1,
+          "p95_delay_s": 228,
+          "avg_wait_depart_s": 105,
+          "avg_wait_arrive_s": 2.1,
+          "avg_cycle_s": 797.1,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "micro": {
+          "pads": 12,
+          "utilization_pct": 30.1
+        },
+        "heavy": {
+          "pads": 4,
+          "utilization_pct": 69.1
+        },
+        "cargo": {
+          "pads": 2,
+          "utilization_pct": 34.2
+        }
+      },
+      "channels": {
+        "L-M1": {
+          "label": "微坪通道 1",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 735,
+          "utilization_pct": 93.4
+        },
+        "L-M2": {
+          "label": "微坪通道 2",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 611,
+          "utilization_pct": 77.8
+        },
+        "L-H1": {
+          "label": "重坪通道",
+          "owner": "heavy",
+          "kind": "lane",
+          "grants": 195,
+          "utilization_pct": 37.1
+        },
+        "RWY": {
+          "label": "货运跑道",
+          "owner": "cargo",
+          "kind": "runway",
+          "grants": 48,
+          "utilization_pct": 69.3
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0001",
+          "t": 1475.976,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-06（飞手）",
+          "basis": [
+            "M-06: 放行时刻偏离 +12.22s（指令 1463.755s，实际 1475.976s）"
+          ],
+          "chain": [
+            "CMD-0355",
+            "EXE-0354",
+            "CMD-0349",
+            "EXE-0355",
+            "CFT-0001"
+          ]
+        },
+        {
+          "incidentId": "CFT-0002",
+          "t": 2550.331,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "H-01（飞手）",
+          "basis": [
+            "H-01: 放行时刻偏离 +12.33s（指令 2538s，实际 2550.331s）"
+          ],
+          "chain": [
+            "CMD-0613",
+            "EXE-0622",
+            "CMD-0609",
+            "EXE-0623",
+            "CFT-0002"
+          ]
+        },
+        {
+          "incidentId": "CFT-0003",
+          "t": 4035.972,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-14（飞手）",
+          "basis": [
+            "M-14: 放行时刻偏离 +16.82s（指令 4018.861s，实际 4035.681s）"
+          ],
+          "chain": [
+            "CMD-0985",
+            "EXE-0990",
+            "CMD-0994",
+            "EXE-0991",
+            "CFT-0003"
+          ]
+        },
+        {
+          "incidentId": "CFT-0004",
+          "t": 4081.747,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-07（飞手）、M-03（飞手）",
+          "basis": [
+            "M-07: 放行时刻偏离 +10.89s（指令 4062.859s，实际 4073.747s）",
+            "M-03: 航速偏离 22%（实际 18.24 m/s）"
+          ],
+          "chain": [
+            "CMD-1005",
+            "EXE-1007",
+            "CMD-1011",
+            "EXE-1009",
+            "CFT-0004"
+          ]
+        },
+        {
+          "incidentId": "CFT-0005",
+          "t": 5013.015,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-09（飞手）",
+          "basis": [
+            "M-09: 放行时刻偏离 +16.16s（指令 4996.859s，实际 5013.015s）"
+          ],
+          "chain": [
+            "CMD-1238",
+            "EXE-1236",
+            "CMD-1229",
+            "EXE-1237",
+            "CFT-0005"
+          ]
+        },
+        {
+          "incidentId": "CFT-0006",
+          "t": 5172.986,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "H-03（飞手）",
+          "basis": [
+            "H-03: 放行时刻偏离 +10.05s（指令 5160.986s，实际 5171.034s）"
+          ],
+          "chain": [
+            "CMD-1272",
+            "EXE-1280",
+            "CMD-1278",
+            "EXE-1281",
+            "CFT-0006"
+          ]
+        }
+      ],
+      "runtime_ms": 67
+    },
+    {
+      "scenario": {
+        "id": "s1_graded",
+        "policyId": "graded",
+        "name": "S1 分级管理模式",
+        "short": "分级模式",
+        "load": 2,
+        "rule": "per-class"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 20,
+        "heavy": 6,
+        "cargo": 4
+      },
+      "totals": {
+        "sorties": 974,
+        "throughput_per_h": 556.6,
+        "avg_delay_s": 26.5,
+        "p95_delay_s": 68.9,
+        "conflicts": 4,
+        "conflicts_air": 4,
+        "conflicts_ground": 0,
+        "severe_conflicts": 3,
+        "conflicts_per_1000_sorties": 4.11,
+        "pad_utilization_pct": 52.6,
+        "energy_kwh_per_h": 6.6,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 0,
+          "飞手违规": 4
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 20,
+          "sorties": 828,
+          "throughput_per_h": 473.1,
+          "avg_delay_s": 15.7,
+          "p95_delay_s": 30,
+          "avg_wait_depart_s": 9.2,
+          "avg_wait_arrive_s": 6.5,
+          "avg_cycle_s": 151.7,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 6,
+          "sorties": 117,
+          "throughput_per_h": 66.9,
+          "avg_delay_s": 61.3,
+          "p95_delay_s": 78.4,
+          "avg_wait_depart_s": 57.9,
+          "avg_wait_arrive_s": 3.4,
+          "avg_cycle_s": 325.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 4,
+          "sorties": 29,
+          "throughput_per_h": 16.6,
+          "avg_delay_s": 193.5,
+          "p95_delay_s": 318,
+          "avg_wait_depart_s": 149.3,
+          "avg_wait_arrive_s": 44.2,
+          "avg_cycle_s": 883.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "micro": {
+          "pads": 12,
+          "utilization_pct": 43.2
+        },
+        "heavy": {
+          "pads": 4,
+          "utilization_pct": 81.9
+        },
+        "cargo": {
+          "pads": 2,
+          "utilization_pct": 50.8
+        }
+      },
+      "channels": {
+        "L-M1": {
+          "label": "微坪通道 1",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 878,
+          "utilization_pct": 111.5
+        },
+        "L-M2": {
+          "label": "微坪通道 2",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 782,
+          "utilization_pct": 99.3
+        },
+        "L-H1": {
+          "label": "重坪通道",
+          "owner": "heavy",
+          "kind": "lane",
+          "grants": 233,
+          "utilization_pct": 44.2
+        },
+        "RWY": {
+          "label": "货运跑道",
+          "owner": "cargo",
+          "kind": "runway",
+          "grants": 58,
+          "utilization_pct": 82.7
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0001",
+          "t": 2129.3,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "H-05（飞手）",
+          "basis": [
+            "H-05: 放行时刻偏离 +11.24s（指令 2117.3s，实际 2128.544s）"
+          ],
+          "chain": [
+            "CMD-0632",
+            "EXE-0643",
+            "CMD-0634",
+            "EXE-0644",
+            "CFT-0001"
+          ]
+        },
+        {
+          "incidentId": "CFT-0002",
+          "t": 2586.553,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-10（飞手）",
+          "basis": [
+            "M-10: 放行时刻偏离 +15.94s（指令 2570.553s，实际 2586.494s）"
+          ],
+          "chain": [
+            "CMD-0779",
+            "EXE-0783",
+            "CMD-0788",
+            "EXE-0784",
+            "CFT-0002"
+          ]
+        },
+        {
+          "incidentId": "CFT-0003",
+          "t": 2913.125,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-02（飞手）",
+          "basis": [
+            "M-02: 放行时刻偏离 +10.35s（指令 2902.553s，实际 2912.904s）"
+          ],
+          "chain": [
+            "CMD-0888",
+            "EXE-0885",
+            "CMD-0892",
+            "EXE-0886",
+            "CFT-0003"
+          ]
+        },
+        {
+          "incidentId": "CFT-0004",
+          "t": 4199.217,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-07（飞手）",
+          "basis": [
+            "M-07: 放行时刻偏离 +16.1s（指令 4183.116s，实际 4199.217s）"
+          ],
+          "chain": [
+            "CMD-1278",
+            "EXE-1277",
+            "CMD-1270",
+            "EXE-1278",
+            "CFT-0004"
+          ]
+        }
+      ],
+      "runtime_ms": 860
+    },
+    {
+      "scenario": {
+        "id": "s2a_pooled_conservative",
+        "policyId": "pooledConservative",
+        "name": "S2 混合管理模式（统一保守规则）",
+        "short": "混合-保守",
+        "load": 0.6,
+        "rule": "uniform-conservative"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 6,
+        "heavy": 2,
+        "cargo": 1
+      },
+      "totals": {
+        "sorties": 330,
+        "throughput_per_h": 188.6,
+        "avg_delay_s": 1.8,
+        "p95_delay_s": 12.3,
+        "conflicts": 28,
+        "conflicts_air": 2,
+        "conflicts_ground": 26,
+        "severe_conflicts": 2,
+        "conflicts_per_1000_sorties": 84.85,
+        "pad_utilization_pct": 13.3,
+        "energy_kwh_per_h": 2.3,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 26,
+          "飞手违规": 2
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 6,
+          "sorties": 275,
+          "throughput_per_h": 157.1,
+          "avg_delay_s": 1.6,
+          "p95_delay_s": 10.7,
+          "avg_wait_depart_s": 1.2,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 137.6,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 2,
+          "sorties": 46,
+          "throughput_per_h": 26.3,
+          "avg_delay_s": 2.8,
+          "p95_delay_s": 16.7,
+          "avg_wait_depart_s": 1.9,
+          "avg_wait_arrive_s": 0.9,
+          "avg_cycle_s": 266.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 1,
+          "sorties": 9,
+          "throughput_per_h": 5.1,
+          "avg_delay_s": 2.4,
+          "p95_delay_s": 16.8,
+          "avg_wait_depart_s": 1.1,
+          "avg_wait_arrive_s": 1.3,
+          "avg_cycle_s": 692.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 13.3
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 251,
+          "utilization_pct": 34.8
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 211,
+          "utilization_pct": 27.2
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 161,
+          "utilization_pct": 22.7
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 38,
+          "utilization_pct": 28.9
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0003",
+          "t": 1428,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 22.36 m 小于 heavy/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0003"
+          ]
+        },
+        {
+          "incidentId": "CFT-0004",
+          "t": 2190,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0004"
+          ]
+        },
+        {
+          "incidentId": "CFT-0005",
+          "t": 2192.355,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0005"
+          ]
+        },
+        {
+          "incidentId": "CFT-0006",
+          "t": 2202.514,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0006"
+          ]
+        },
+        {
+          "incidentId": "CFT-0007",
+          "t": 2808,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 36.06 m 小于 micro/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0007"
+          ]
+        },
+        {
+          "incidentId": "CFT-0008",
+          "t": 3344.222,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "H-01（飞手）",
+          "basis": [
+            "H-01: 放行时刻偏离 +12.22s（指令 3332s，实际 3344.222s）"
+          ],
+          "chain": [
+            "CMD-0351",
+            "EXE-0349",
+            "CMD-0349",
+            "EXE-0350",
+            "CFT-0008"
+          ]
+        }
+      ],
+      "runtime_ms": 35
+    },
+    {
+      "scenario": {
+        "id": "s2a_pooled_conservative",
+        "policyId": "pooledConservative",
+        "name": "S2 混合管理模式（统一保守规则）",
+        "short": "混合-保守",
+        "load": 1,
+        "rule": "uniform-conservative"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 511,
+        "throughput_per_h": 292,
+        "avg_delay_s": 13.5,
+        "p95_delay_s": 35.9,
+        "conflicts": 118,
+        "conflicts_air": 4,
+        "conflicts_ground": 114,
+        "severe_conflicts": 12,
+        "conflicts_per_1000_sorties": 230.92,
+        "pad_utilization_pct": 24.5,
+        "energy_kwh_per_h": 3.5,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 114,
+          "飞手违规": 4
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 431,
+          "throughput_per_h": 246.3,
+          "avg_delay_s": 10.4,
+          "p95_delay_s": 21.9,
+          "avg_wait_depart_s": 7.2,
+          "avg_wait_arrive_s": 3.2,
+          "avg_cycle_s": 146.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 64,
+          "throughput_per_h": 36.6,
+          "avg_delay_s": 28.5,
+          "p95_delay_s": 40,
+          "avg_wait_depart_s": 28.2,
+          "avg_wait_arrive_s": 0.3,
+          "avg_cycle_s": 292.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 16,
+          "throughput_per_h": 9.1,
+          "avg_delay_s": 36,
+          "p95_delay_s": 52,
+          "avg_wait_depart_s": 35.3,
+          "avg_wait_arrive_s": 0.6,
+          "avg_cycle_s": 726,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 24.5
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 316,
+          "utilization_pct": 43.8
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 314,
+          "utilization_pct": 42.7
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 302,
+          "utilization_pct": 39.6
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 91,
+          "utilization_pct": 55.7
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0021",
+          "t": 900.188,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 20 m 小于 cargo/heavy 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0021"
+          ]
+        },
+        {
+          "incidentId": "CFT-0022",
+          "t": 1036.24,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-05（飞手）",
+          "basis": [
+            "M-05: 放行时刻偏离 +12.24s（指令 1024s，实际 1036.24s）"
+          ],
+          "chain": [
+            "CMD-0161",
+            "EXE-0161",
+            "CMD-0158",
+            "EXE-0162",
+            "CFT-0022"
+          ]
+        },
+        {
+          "incidentId": "CFT-0023",
+          "t": 1180,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0023"
+          ]
+        },
+        {
+          "incidentId": "CFT-0024",
+          "t": 1180.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0024"
+          ]
+        },
+        {
+          "incidentId": "CFT-0025",
+          "t": 1192.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0025"
+          ]
+        },
+        {
+          "incidentId": "CFT-0026",
+          "t": 1407,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 36.06 m 小于 heavy/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0026"
+          ]
+        }
+      ],
+      "runtime_ms": 56
+    },
+    {
+      "scenario": {
+        "id": "s2a_pooled_conservative",
+        "policyId": "pooledConservative",
+        "name": "S2 混合管理模式（统一保守规则）",
+        "short": "混合-保守",
+        "load": 1.5,
+        "rule": "uniform-conservative"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 15,
+        "heavy": 5,
+        "cargo": 3
+      },
+      "totals": {
+        "sorties": 684,
+        "throughput_per_h": 390.9,
+        "avg_delay_s": 37.5,
+        "p95_delay_s": 54.4,
+        "conflicts": 373,
+        "conflicts_air": 5,
+        "conflicts_ground": 368,
+        "severe_conflicts": 59,
+        "conflicts_per_1000_sorties": 545.32,
+        "pad_utilization_pct": 49,
+        "energy_kwh_per_h": 5.3,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 368,
+          "飞手违规": 5
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 15,
+          "sorties": 554,
+          "throughput_per_h": 316.6,
+          "avg_delay_s": 35.3,
+          "p95_delay_s": 52,
+          "avg_wait_depart_s": 32.5,
+          "avg_wait_arrive_s": 2.8,
+          "avg_cycle_s": 171.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 5,
+          "sorties": 106,
+          "throughput_per_h": 60.6,
+          "avg_delay_s": 36.4,
+          "p95_delay_s": 50,
+          "avg_wait_depart_s": 35.9,
+          "avg_wait_arrive_s": 0.5,
+          "avg_cycle_s": 300.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 3,
+          "sorties": 24,
+          "throughput_per_h": 13.7,
+          "avg_delay_s": 93.8,
+          "p95_delay_s": 120.6,
+          "avg_wait_depart_s": 91.8,
+          "avg_wait_arrive_s": 2,
+          "avg_cycle_s": 783.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 49
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 384,
+          "utilization_pct": 56.2
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 462,
+          "utilization_pct": 60.9
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 445,
+          "utilization_pct": 59.9
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 73,
+          "utilization_pct": 71.9
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0045",
+          "t": 942,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0045"
+          ]
+        },
+        {
+          "incidentId": "CFT-0046",
+          "t": 950,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0046"
+          ]
+        },
+        {
+          "incidentId": "CFT-0047",
+          "t": 958,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0047"
+          ]
+        },
+        {
+          "incidentId": "CFT-0048",
+          "t": 958,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0048"
+          ]
+        },
+        {
+          "incidentId": "CFT-0049",
+          "t": 962,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0049"
+          ]
+        },
+        {
+          "incidentId": "CFT-0050",
+          "t": 970,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0050"
+          ]
+        }
+      ],
+      "runtime_ms": 657
+    },
+    {
+      "scenario": {
+        "id": "s2a_pooled_conservative",
+        "policyId": "pooledConservative",
+        "name": "S2 混合管理模式（统一保守规则）",
+        "short": "混合-保守",
+        "load": 2,
+        "rule": "uniform-conservative"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 20,
+        "heavy": 6,
+        "cargo": 4
+      },
+      "totals": {
+        "sorties": 832,
+        "throughput_per_h": 475.4,
+        "avg_delay_s": 52.9,
+        "p95_delay_s": 72,
+        "conflicts": 595,
+        "conflicts_air": 4,
+        "conflicts_ground": 591,
+        "severe_conflicts": 84,
+        "conflicts_per_1000_sorties": 715.14,
+        "pad_utilization_pct": 69.7,
+        "energy_kwh_per_h": 6.2,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 591,
+          "飞手违规": 4
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 20,
+          "sorties": 680,
+          "throughput_per_h": 388.6,
+          "avg_delay_s": 49.4,
+          "p95_delay_s": 63.2,
+          "avg_wait_depart_s": 46.1,
+          "avg_wait_arrive_s": 3.3,
+          "avg_cycle_s": 185.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 6,
+          "sorties": 124,
+          "throughput_per_h": 70.9,
+          "avg_delay_s": 43.4,
+          "p95_delay_s": 56,
+          "avg_wait_depart_s": 42.5,
+          "avg_wait_arrive_s": 0.9,
+          "avg_cycle_s": 307.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 4,
+          "sorties": 28,
+          "throughput_per_h": 16,
+          "avg_delay_s": 179.7,
+          "p95_delay_s": 180,
+          "avg_wait_depart_s": 179.1,
+          "avg_wait_arrive_s": 0.6,
+          "avg_cycle_s": 869.7,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 69.7
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 483,
+          "utilization_pct": 70.7
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 559,
+          "utilization_pct": 73.8
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 563,
+          "utilization_pct": 75
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 57,
+          "utilization_pct": 80.8
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0085",
+          "t": 1010,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0085"
+          ]
+        },
+        {
+          "incidentId": "CFT-0086",
+          "t": 1044.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0086"
+          ]
+        },
+        {
+          "incidentId": "CFT-0087",
+          "t": 1056.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0087"
+          ]
+        },
+        {
+          "incidentId": "CFT-0088",
+          "t": 1068.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0088"
+          ]
+        },
+        {
+          "incidentId": "CFT-0089",
+          "t": 1074.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0089"
+          ]
+        },
+        {
+          "incidentId": "CFT-0090",
+          "t": 1080.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0090"
+          ]
+        }
+      ],
+      "runtime_ms": 632
+    },
+    {
+      "scenario": {
+        "id": "s2b_pooled_naive",
+        "policyId": "pooledNaive",
+        "name": "S2 混合管理模式（统一经验规则）",
+        "short": "混合-经验",
+        "load": 0.6,
+        "rule": "uniform-naive"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 6,
+        "heavy": 2,
+        "cargo": 1
+      },
+      "totals": {
+        "sorties": 331,
+        "throughput_per_h": 189.1,
+        "avg_delay_s": 0.8,
+        "p95_delay_s": 8.9,
+        "conflicts": 29,
+        "conflicts_air": 10,
+        "conflicts_ground": 19,
+        "severe_conflicts": 7,
+        "conflicts_per_1000_sorties": 87.61,
+        "pad_utilization_pct": 13.1,
+        "energy_kwh_per_h": 2.3,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 25,
+          "飞手违规": 4
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 6,
+          "sorties": 275,
+          "throughput_per_h": 157.1,
+          "avg_delay_s": 0.8,
+          "p95_delay_s": 9.6,
+          "avg_wait_depart_s": 0.4,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 136.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 2,
+          "sorties": 47,
+          "throughput_per_h": 26.9,
+          "avg_delay_s": 0.8,
+          "p95_delay_s": 7,
+          "avg_wait_depart_s": 0.4,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 264.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 1,
+          "sorties": 9,
+          "throughput_per_h": 5.1,
+          "avg_delay_s": 0,
+          "p95_delay_s": 0,
+          "avg_wait_depart_s": 0,
+          "avg_wait_arrive_s": 0,
+          "avg_cycle_s": 690,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 13.1
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 298,
+          "utilization_pct": 41.1
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 268,
+          "utilization_pct": 36
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 80,
+          "utilization_pct": 11
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 19,
+          "utilization_pct": 26.1
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0002",
+          "t": 1428,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 22.36 m 小于 heavy/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0002"
+          ]
+        },
+        {
+          "incidentId": "CFT-0003",
+          "t": 2016,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+            "实际航速 H-01 10 m/s、M-06 15 m/s",
+            "通道内最小间距 0 m < 要求 20 m"
+          ],
+          "chain": [
+            "CMD-0210",
+            "EXE-0207",
+            "CMD-0211",
+            "EXE-0208",
+            "CFT-0003"
+          ]
+        },
+        {
+          "incidentId": "CFT-0004",
+          "t": 2185,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 28.28 m 小于 cargo/micro 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0004"
+          ]
+        },
+        {
+          "incidentId": "CFT-0005",
+          "t": 2186.355,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0005"
+          ]
+        },
+        {
+          "incidentId": "CFT-0006",
+          "t": 2202.514,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 22.36 m 小于 cargo/micro 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0006"
+          ]
+        },
+        {
+          "incidentId": "CFT-0007",
+          "t": 2289,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+            "实际航速 H-02 10 m/s、M-06 15 m/s",
+            "通道内最小间距 0 m < 要求 20 m"
+          ],
+          "chain": [
+            "CMD-0240",
+            "EXE-0238",
+            "CMD-0241",
+            "EXE-0239",
+            "CFT-0007"
+          ]
+        }
+      ],
+      "runtime_ms": 19
+    },
+    {
+      "scenario": {
+        "id": "s2b_pooled_naive",
+        "policyId": "pooledNaive",
+        "name": "S2 混合管理模式（统一经验规则）",
+        "short": "混合-经验",
+        "load": 1,
+        "rule": "uniform-naive"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 546,
+        "throughput_per_h": 312,
+        "avg_delay_s": 2.2,
+        "p95_delay_s": 14,
+        "conflicts": 114,
+        "conflicts_air": 21,
+        "conflicts_ground": 93,
+        "severe_conflicts": 22,
+        "conflicts_per_1000_sorties": 208.79,
+        "pad_utilization_pct": 21.8,
+        "energy_kwh_per_h": 3.8,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 108,
+          "飞手违规": 6
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 459,
+          "throughput_per_h": 262.3,
+          "avg_delay_s": 1.3,
+          "p95_delay_s": 10.4,
+          "avg_wait_depart_s": 1,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 137.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 69,
+          "throughput_per_h": 39.4,
+          "avg_delay_s": 6.9,
+          "p95_delay_s": 34.4,
+          "avg_wait_depart_s": 5.7,
+          "avg_wait_arrive_s": 1.1,
+          "avg_cycle_s": 270.9,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 18,
+          "throughput_per_h": 10.3,
+          "avg_delay_s": 8,
+          "p95_delay_s": 52.5,
+          "avg_wait_depart_s": 7.6,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 698,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 21.8
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 408,
+          "utilization_pct": 56.3
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 385,
+          "utilization_pct": 49.9
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 254,
+          "utilization_pct": 35.1
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 48,
+          "utilization_pct": 53.6
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0023",
+          "t": 930,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-09（飞手）",
+          "basis": [
+            "M-09: 航速偏离 26%（实际 18.9 m/s）"
+          ],
+          "chain": [
+            "CMD-0155",
+            "EXE-0152",
+            "CMD-0156",
+            "EXE-0153",
+            "CFT-0023"
+          ]
+        },
+        {
+          "incidentId": "CFT-0024",
+          "t": 1127,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+            "实际航速 H-02 10 m/s、M-04 15 m/s",
+            "通道内最小间距 3.61 m < 要求 20 m"
+          ],
+          "chain": [
+            "CMD-0180",
+            "EXE-0182",
+            "CMD-0183",
+            "EXE-0183",
+            "CFT-0024"
+          ]
+        },
+        {
+          "incidentId": "CFT-0025",
+          "t": 1386,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 20 m 小于 micro/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0025"
+          ]
+        },
+        {
+          "incidentId": "CFT-0026",
+          "t": 1391,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0026"
+          ]
+        },
+        {
+          "incidentId": "CFT-0027",
+          "t": 1399.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0027"
+          ]
+        },
+        {
+          "incidentId": "CFT-0028",
+          "t": 1404.514,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0028"
+          ]
+        }
+      ],
+      "runtime_ms": 29
+    },
+    {
+      "scenario": {
+        "id": "s2b_pooled_naive",
+        "policyId": "pooledNaive",
+        "name": "S2 混合管理模式（统一经验规则）",
+        "short": "混合-经验",
+        "load": 1.5,
+        "rule": "uniform-naive"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 15,
+        "heavy": 5,
+        "cargo": 3
+      },
+      "totals": {
+        "sorties": 814,
+        "throughput_per_h": 465.1,
+        "avg_delay_s": 8.1,
+        "p95_delay_s": 25.9,
+        "conflicts": 578,
+        "conflicts_air": 85,
+        "conflicts_ground": 493,
+        "severe_conflicts": 160,
+        "conflicts_per_1000_sorties": 710.07,
+        "pad_utilization_pct": 36.8,
+        "energy_kwh_per_h": 5.7,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 568,
+          "飞手违规": 10
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 15,
+          "sorties": 676,
+          "throughput_per_h": 386.3,
+          "avg_delay_s": 4.2,
+          "p95_delay_s": 15.2,
+          "avg_wait_depart_s": 2.8,
+          "avg_wait_arrive_s": 1.3,
+          "avg_cycle_s": 140.2,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 5,
+          "sorties": 114,
+          "throughput_per_h": 65.1,
+          "avg_delay_s": 13.8,
+          "p95_delay_s": 29.2,
+          "avg_wait_depart_s": 13.1,
+          "avg_wait_arrive_s": 0.7,
+          "avg_cycle_s": 277.8,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 3,
+          "sorties": 24,
+          "throughput_per_h": 13.7,
+          "avg_delay_s": 91.5,
+          "p95_delay_s": 107.4,
+          "avg_wait_depart_s": 90.7,
+          "avg_wait_arrive_s": 0.7,
+          "avg_cycle_s": 781.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 36.8
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 581,
+          "utilization_pct": 80.4
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 515,
+          "utilization_pct": 68.7
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 463,
+          "utilization_pct": 63.4
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 60,
+          "utilization_pct": 70.3
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0048",
+          "t": 911,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0048"
+          ]
+        },
+        {
+          "incidentId": "CFT-0049",
+          "t": 915,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0049"
+          ]
+        },
+        {
+          "incidentId": "CFT-0050",
+          "t": 921,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0050"
+          ]
+        },
+        {
+          "incidentId": "CFT-0051",
+          "t": 1128,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 20 m 小于 micro/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0051"
+          ]
+        },
+        {
+          "incidentId": "CFT-0052",
+          "t": 1133,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0052"
+          ]
+        },
+        {
+          "incidentId": "CFT-0053",
+          "t": 1137,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0053"
+          ]
+        }
+      ],
+      "runtime_ms": 766
+    },
+    {
+      "scenario": {
+        "id": "s2b_pooled_naive",
+        "policyId": "pooledNaive",
+        "name": "S2 混合管理模式（统一经验规则）",
+        "short": "混合-经验",
+        "load": 2,
+        "rule": "uniform-naive"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 20,
+        "heavy": 6,
+        "cargo": 4
+      },
+      "totals": {
+        "sorties": 1011,
+        "throughput_per_h": 577.7,
+        "avg_delay_s": 19.7,
+        "p95_delay_s": 47.6,
+        "conflicts": 961,
+        "conflicts_air": 166,
+        "conflicts_ground": 795,
+        "severe_conflicts": 305,
+        "conflicts_per_1000_sorties": 950.54,
+        "pad_utilization_pct": 51.3,
+        "energy_kwh_per_h": 6.8,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 944,
+          "飞手违规": 17
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 20,
+          "sorties": 854,
+          "throughput_per_h": 488,
+          "avg_delay_s": 12.5,
+          "p95_delay_s": 30,
+          "avg_wait_depart_s": 7.3,
+          "avg_wait_arrive_s": 5.3,
+          "avg_cycle_s": 148.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 6,
+          "sorties": 129,
+          "throughput_per_h": 73.7,
+          "avg_delay_s": 31.7,
+          "p95_delay_s": 51,
+          "avg_wait_depart_s": 26.2,
+          "avg_wait_arrive_s": 5.5,
+          "avg_cycle_s": 295.7,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 4,
+          "sorties": 28,
+          "throughput_per_h": 16,
+          "avg_delay_s": 183.3,
+          "p95_delay_s": 193.4,
+          "avg_wait_depart_s": 181.8,
+          "avg_wait_arrive_s": 1.5,
+          "avg_cycle_s": 873.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 51.3
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 694,
+          "utilization_pct": 94.8
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 642,
+          "utilization_pct": 86.7
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 622,
+          "utilization_pct": 82.9
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 56,
+          "utilization_pct": 80.7
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0084",
+          "t": 926,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0084"
+          ]
+        },
+        {
+          "incidentId": "CFT-0085",
+          "t": 930.355,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0085"
+          ]
+        },
+        {
+          "incidentId": "CFT-0086",
+          "t": 934.355,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0086"
+          ]
+        },
+        {
+          "incidentId": "CFT-0087",
+          "t": 936,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0087"
+          ]
+        },
+        {
+          "incidentId": "CFT-0088",
+          "t": 937,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0088"
+          ]
+        },
+        {
+          "incidentId": "CFT-0089",
+          "t": 942,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0089"
+          ]
+        }
+      ],
+      "runtime_ms": 78
+    }
+  ],
+  "summary": [
+    {
+      "场景": "S1 分级管理模式",
+      "政策": "graded",
+      "负荷": 0.6,
+      "微型机数量": 6,
+      "重型机数量": 2,
+      "货运机数量": 1,
+      "吞吐量_架次每小时": 189.1,
+      "平均延误_s": 1.1,
+      "P95延误_s": 9.8,
+      "冲突次数": 1,
+      "空中冲突": 1,
+      "地面冲突": 0,
+      "严重冲突": 1,
+      "千架次冲突率": 3.02,
+      "停机坪利用率_pct": 13.1,
+      "能耗_kWh_每小时": 2.3,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 0,
+      "飞手责任事件": 1
+    },
+    {
+      "场景": "S1 分级管理模式",
+      "政策": "graded",
+      "负荷": 1,
+      "微型机数量": 10,
+      "重型机数量": 3,
+      "货运机数量": 2,
+      "吞吐量_架次每小时": 308.6,
+      "平均延误_s": 5.6,
+      "P95延误_s": 36,
+      "冲突次数": 1,
+      "空中冲突": 1,
+      "地面冲突": 0,
+      "严重冲突": 0,
+      "千架次冲突率": 1.85,
+      "停机坪利用率_pct": 22.6,
+      "能耗_kWh_每小时": 3.6,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 0,
+      "飞手责任事件": 1
+    },
+    {
+      "场景": "S1 分级管理模式",
+      "政策": "graded",
+      "负荷": 1.5,
+      "微型机数量": 15,
+      "重型机数量": 5,
+      "货运机数量": 3,
+      "吞吐量_架次每小时": 456,
+      "平均延误_s": 14.9,
+      "P95延误_s": 67,
+      "冲突次数": 8,
+      "空中冲突": 8,
+      "地面冲突": 0,
+      "严重冲突": 4,
+      "千架次冲突率": 10.03,
+      "停机坪利用率_pct": 39.2,
+      "能耗_kWh_每小时": 5.4,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 0,
+      "飞手责任事件": 8
+    },
+    {
+      "场景": "S1 分级管理模式",
+      "政策": "graded",
+      "负荷": 2,
+      "微型机数量": 20,
+      "重型机数量": 6,
+      "货运机数量": 4,
+      "吞吐量_架次每小时": 556.6,
+      "平均延误_s": 26.5,
+      "P95延误_s": 68.9,
+      "冲突次数": 4,
+      "空中冲突": 4,
+      "地面冲突": 0,
+      "严重冲突": 3,
+      "千架次冲突率": 4.11,
+      "停机坪利用率_pct": 52.6,
+      "能耗_kWh_每小时": 6.6,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 0,
+      "飞手责任事件": 4
+    },
+    {
+      "场景": "S2 混合管理模式（统一保守规则）",
+      "政策": "pooledConservative",
+      "负荷": 0.6,
+      "微型机数量": 6,
+      "重型机数量": 2,
+      "货运机数量": 1,
+      "吞吐量_架次每小时": 188.6,
+      "平均延误_s": 1.8,
+      "P95延误_s": 12.3,
+      "冲突次数": 28,
+      "空中冲突": 2,
+      "地面冲突": 26,
+      "严重冲突": 2,
+      "千架次冲突率": 84.85,
+      "停机坪利用率_pct": 13.3,
+      "能耗_kWh_每小时": 2.3,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 26,
+      "飞手责任事件": 2
+    },
+    {
+      "场景": "S2 混合管理模式（统一保守规则）",
+      "政策": "pooledConservative",
+      "负荷": 1,
+      "微型机数量": 10,
+      "重型机数量": 3,
+      "货运机数量": 2,
+      "吞吐量_架次每小时": 292,
+      "平均延误_s": 13.5,
+      "P95延误_s": 35.9,
+      "冲突次数": 118,
+      "空中冲突": 4,
+      "地面冲突": 114,
+      "严重冲突": 12,
+      "千架次冲突率": 230.92,
+      "停机坪利用率_pct": 24.5,
+      "能耗_kWh_每小时": 3.5,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 114,
+      "飞手责任事件": 4
+    },
+    {
+      "场景": "S2 混合管理模式（统一保守规则）",
+      "政策": "pooledConservative",
+      "负荷": 1.5,
+      "微型机数量": 15,
+      "重型机数量": 5,
+      "货运机数量": 3,
+      "吞吐量_架次每小时": 390.9,
+      "平均延误_s": 37.5,
+      "P95延误_s": 54.4,
+      "冲突次数": 373,
+      "空中冲突": 5,
+      "地面冲突": 368,
+      "严重冲突": 59,
+      "千架次冲突率": 545.32,
+      "停机坪利用率_pct": 49,
+      "能耗_kWh_每小时": 5.3,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 368,
+      "飞手责任事件": 5
+    },
+    {
+      "场景": "S2 混合管理模式（统一保守规则）",
+      "政策": "pooledConservative",
+      "负荷": 2,
+      "微型机数量": 20,
+      "重型机数量": 6,
+      "货运机数量": 4,
+      "吞吐量_架次每小时": 475.4,
+      "平均延误_s": 52.9,
+      "P95延误_s": 72,
+      "冲突次数": 595,
+      "空中冲突": 4,
+      "地面冲突": 591,
+      "严重冲突": 84,
+      "千架次冲突率": 715.14,
+      "停机坪利用率_pct": 69.7,
+      "能耗_kWh_每小时": 6.2,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 591,
+      "飞手责任事件": 4
+    },
+    {
+      "场景": "S2 混合管理模式（统一经验规则）",
+      "政策": "pooledNaive",
+      "负荷": 0.6,
+      "微型机数量": 6,
+      "重型机数量": 2,
+      "货运机数量": 1,
+      "吞吐量_架次每小时": 189.1,
+      "平均延误_s": 0.8,
+      "P95延误_s": 8.9,
+      "冲突次数": 29,
+      "空中冲突": 10,
+      "地面冲突": 19,
+      "严重冲突": 7,
+      "千架次冲突率": 87.61,
+      "停机坪利用率_pct": 13.1,
+      "能耗_kWh_每小时": 2.3,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 25,
+      "飞手责任事件": 4
+    },
+    {
+      "场景": "S2 混合管理模式（统一经验规则）",
+      "政策": "pooledNaive",
+      "负荷": 1,
+      "微型机数量": 10,
+      "重型机数量": 3,
+      "货运机数量": 2,
+      "吞吐量_架次每小时": 312,
+      "平均延误_s": 2.2,
+      "P95延误_s": 14,
+      "冲突次数": 114,
+      "空中冲突": 21,
+      "地面冲突": 93,
+      "严重冲突": 22,
+      "千架次冲突率": 208.79,
+      "停机坪利用率_pct": 21.8,
+      "能耗_kWh_每小时": 3.8,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 108,
+      "飞手责任事件": 6
+    },
+    {
+      "场景": "S2 混合管理模式（统一经验规则）",
+      "政策": "pooledNaive",
+      "负荷": 1.5,
+      "微型机数量": 15,
+      "重型机数量": 5,
+      "货运机数量": 3,
+      "吞吐量_架次每小时": 465.1,
+      "平均延误_s": 8.1,
+      "P95延误_s": 25.9,
+      "冲突次数": 578,
+      "空中冲突": 85,
+      "地面冲突": 493,
+      "严重冲突": 160,
+      "千架次冲突率": 710.07,
+      "停机坪利用率_pct": 36.8,
+      "能耗_kWh_每小时": 5.7,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 568,
+      "飞手责任事件": 10
+    },
+    {
+      "场景": "S2 混合管理模式（统一经验规则）",
+      "政策": "pooledNaive",
+      "负荷": 2,
+      "微型机数量": 20,
+      "重型机数量": 6,
+      "货运机数量": 4,
+      "吞吐量_架次每小时": 577.7,
+      "平均延误_s": 19.7,
+      "P95延误_s": 47.6,
+      "冲突次数": 961,
+      "空中冲突": 166,
+      "地面冲突": 795,
+      "严重冲突": 305,
+      "千架次冲突率": 950.54,
+      "停机坪利用率_pct": 51.3,
+      "能耗_kWh_每小时": 6.8,
+      "单位能耗_kWh_每架次": 0.01,
+      "市电购电_kWh_每小时": 0,
+      "光伏自用_kWh_每小时": 0,
+      "储能放电_kWh_每小时": 0,
+      "用电成本_元_每小时": 0,
+      "平均充电时长_s": 0,
+      "平均充电排队_s": 0,
+      "充电桩利用率_pct": 0,
+      "调度责任事件": 944,
+      "飞手责任事件": 17
+    }
+  ]
+}

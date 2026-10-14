@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>低空港 · 无人机分级运行管理与责任追溯系统（仿真演示模块）</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d1620'/%3E%3Cpath d='M16 6l5 11H11z' fill='%2357d7ff'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="stage"></div>
+
+    <div id="ui">
+      <header id="topbar">
+        <div class="brand">
+          <span class="brand-mark">低空港</span>
+          <span class="brand-title">无人机分级运行管理与责任追溯系统 · 仿真演示模块</span>
+        </div>
+        <div id="scn-chips" class="chips"></div>
+        <div class="top-right">
+          <span id="scn-time" class="mono">00:00.0 / 02:00:00.0</span>
+          <button id="btn-hide-ui" class="btn ghost">隐藏面板</button>
+        </div>
+      </header>
+
+      <section id="left-col">
+        <div class="card">
+          <div class="card-title">实时运行指标 <span class="hint" id="metrics-window">统计窗口 0 – 0 s</span></div>
+          <div class="metric-grid">
+            <div class="metric">
+              <div class="metric-label">吞吐量</div>
+              <div class="metric-value mono" id="m-throughput">0.0</div>
+              <div class="metric-unit">架次 / 小时</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">平均延误</div>
+              <div class="metric-value mono" id="m-delay">0.0</div>
+              <div class="metric-unit">秒 / 架次</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">冲突次数</div>
+              <div class="metric-value mono" id="m-conflicts">0</div>
+              <div class="metric-unit">累计（含空中/地面）</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">场地利用率</div>
+              <div class="metric-value mono" id="m-util">0.0</div>
+              <div class="metric-unit">% 停机坪占用</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">任务能耗</div>
+              <div class="metric-value mono" id="m-energy">0.0</div>
+              <div class="metric-unit">kWh / 小时</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">用电成本</div>
+              <div class="metric-value mono" id="m-cost">0.00</div>
+              <div class="metric-unit">元 / 小时</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">充电桩利用率</div>
+              <div class="metric-value mono" id="m-chgutil">0.0</div>
+              <div class="metric-unit">% 桩占用</div>
+            </div>
+          </div>
+          <div class="metric-sub" id="metrics-sub"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">对照实验 S1 分级 vs S2 混合</div>
+          <div class="tabs" id="load-tabs"></div>
+          <table class="cmp">
+            <thead>
+              <tr>
+                <th>场景</th>
+                <th>吞吐量<br /><span class="th-sub">架次/h</span></th>
+                <th>平均延误<br /><span class="th-sub">s</span></th>
+                <th>冲突<br /><span class="th-sub">次</span></th>
+                <th>严重<br /><span class="th-sub">次</span></th>
+                <th>责任划分<br /><span class="th-sub">调度/飞手</span></th>
+              </tr>
+            </thead>
+            <tbody id="cmp-body"></tbody>
+          </table>
+          <div class="hint" id="cmp-note"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">充电设施因子实验 <span class="hint">模式 × 桩数 × 供电 → 吞吐 / 延误 / 成本</span></div>
+          <div class="tabs" id="energy-load-tabs"></div>
+          <table class="cmp">
+            <thead>
+              <tr>
+                <th>配置</th>
+                <th>吞吐量<br /><span class="th-sub">架次/h</span></th>
+                <th>平均延误<br /><span class="th-sub">s</span></th>
+                <th>用电成本·市电<br /><span class="th-sub">元/h</span></th>
+                <th>用电成本·光伏+储能<br /><span class="th-sub">元/h</span></th>
+              </tr>
+            </thead>
+            <tbody id="energy-body"></tbody>
+          </table>
+          <div class="hint" id="energy-note"></div>
+        </div>
+      </section>
+
+      <section id="right-col">
+        <div class="card">
+          <div class="card-title">控制台</div>
+          <div class="row">
+            <button id="btn-play" class="btn primary">开始</button>
+            <button id="btn-reset" class="btn">回到起点</button>
+            <span id="time-readout" class="mono time">t = 00:00.0</span>
+          </div>
+          <div class="row"><span class="row-label">速度</span><div class="seg" id="speed-seg"></div></div>
+          <div class="row"><span class="row-label">模式</span><div class="seg" id="mode-seg"></div></div>
+          <div class="row"><span class="row-label">充电</span><div class="seg" id="charge-seg"></div></div>
+          <div class="row"><span class="row-label">桩数</span><div class="seg" id="chargers-seg"></div></div>
+          <div class="row"><span class="row-label">供电</span><div class="seg" id="supply-seg"></div></div>
+          <div class="row"><span class="row-label">视角</span><div class="seg" id="view-seg"></div></div>
+          <div class="row">
+            <span class="row-label">跟随</span>
+            <select id="follow-select" class="select"></select>
+          </div>
+          <div class="row toggles">
+            <label><input type="checkbox" id="tg-lines" checked /> 指令连线</label>
+            <label><input type="checkbox" id="tg-trails" checked /> 航迹</label>
+            <label><input type="checkbox" id="tg-labels" checked /> 场地标牌</label>
+            <label><input type="checkbox" id="tg-shadows" checked /> 阴影</label>
+            <label><input type="checkbox" id="tg-bloom" checked /> 泛光</label>
+          </div>
+          <input type="range" id="timeline" min="0" max="7200" step="1" value="0" />
+          <div class="hint">快捷键：空格 播放/暂停 · 1/2/3 切换模式 · Q/W/E/R 切换视角 · H 隐藏面板 · ←/→ 步进</div>
+        </div>
+
+        <div class="card grow">
+          <div class="card-title">责任追溯 · 冲突事件日志链 <span class="hint" id="trace-count"></span></div>
+          <div class="tabs" id="trace-filters">
+            <button class="btn tab-btn on" data-filter="all">全部</button>
+            <button class="btn tab-btn" data-filter="air">空中间隔</button>
+            <button class="btn tab-btn" data-filter="ground">地面间隔</button>
+            <button class="btn tab-btn" data-filter="severe">仅严重</button>
+          </div>
+          <div id="trace-list" class="trace-list"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <div id="caption"></div>
+    <button id="btn-show-ui" class="btn ghost floating">显示面板</button>
+
+    <div id="loading">
+      <div class="spinner"></div>
+      <div id="loading-text">正在加载…</div>
+    </div>
+
+    <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+    "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+    <script type="module" src="/src/main.js?v=20261010b"></script>
+  </body>
+</html>

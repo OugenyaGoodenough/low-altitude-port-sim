@@ -1,0 +1,143 @@
+{
+  "project_name": "低空港——无人机分级运行管理与责任追溯系统（仿真演示模块）",
+  "version": "1.0",
+  "date": "2026-09-30",
+  "background": {
+    "context": "中国国际大学生创新大赛（大创赛）高教赛道创意组参赛项目",
+    "problem_statement": "低空经济发展中，无人机UOM系统管理颗粒度粗、责任划分不明晰。项目提出基于现代化机场模式的无人机分级运行管理办法，需要一个可交互、可录屏的3D动态仿真系统作为技术验证载体，用于项目计划书、答辩演示和评委现场体验。",
+    "goal": "构建浏览器端3D动态仿真：模拟分级无人机机场（停机坪/跑道/调度）运行，对比分级管理与混合管理两种模式的效率指标，并录制演示视频。"
+  },
+  "deliverables": [
+    {
+      "id": "D1",
+      "name": "3D交互式仿真网页",
+      "type": "web_app",
+      "description": "基于Three.js的浏览器端3D仿真场景，可交互操作，可在线部署，包含仿真引擎驱动的无人机起降与调度演示",
+      "tech_stack": ["Three.js", "JavaScript/TypeScript", "Vite", "HTML/CSS"],
+      "deployment": "可静态部署的网页（无后端依赖，仿真逻辑全部在前端运行）"
+    },
+    {
+      "id": "D2",
+      "name": "演示视频（MP4）",
+      "type": "video",
+      "duration_seconds": "60-120",
+      "description": "从D1网页中通过浏览器自动截帧+FFmpeg合成的演示视频，包含无人机起降、调度视角、双模式对比片段，用于项目计划书插图和答辩PPT"
+    }
+  ],
+  "simulation_engine": {
+    "type": "discrete_event_simulation",
+    "language": "JavaScript（内嵌于前端，也可考虑SimPy/Python版作为对照实验脚本）",
+    "entities": [
+      {
+        "name": "micro_drone_apron",
+        "label": "微型无人机停机坪",
+        "properties": { "capacity": 12, "avg_turnaround_s": 30, "separation_m": 5 }
+      },
+      {
+        "name": "heavy_drone_apron",
+        "label": "重型无人机坪",
+        "properties": { "capacity": 4, "avg_turnaround_s": 120, "separation_m": 20 }
+      },
+      {
+        "name": "cargo_runway",
+        "label": "货运/工业/地质无人机跑道",
+        "properties": { "count": 1, "occupancy_s": 90, "note": "滑跑起降，清空时间长" }
+      },
+      {
+        "name": "control_dispatcher",
+        "label": "调度器（对应方案中的运行服务站/塔台）",
+        "behavior": "排序放行、间隔控制、冲突消解"
+      },
+      {
+        "name": "responsibility_log_chain",
+        "label": "责任追溯日志链",
+        "behavior": "记录每次放行指令、飞手执行、偏差事件；事故时自动回溯责任主体（调度指令错误 vs 飞手违规）"
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "S1",
+        "name": "分级管理模式",
+        "description": "三类无人机使用各自专属场地资源（本项目的核心方案）"
+      },
+      {
+        "id": "S2",
+        "name": "混合管理模式",
+        "description": "所有无人机混用一片通用场地（对照组）"
+      },
+      {
+        "id": "S3",
+        "name": "高原气象扰动场景（可选进阶）",
+        "description": "加入大风窗口期等气象扰动，验证西南/高原货运跑道的利用率与鲁棒性"
+      }
+    ],
+    "output_metrics": [
+      "吞吐量（架次/小时）",
+      "平均起降延误（秒）",
+      "空中/地面冲突次数",
+      "场地资源利用率（%）",
+      "责任追溯演示案例"
+    ],
+    "core_experiment": "S1 vs S2 对照实验，验证分级管理使吞吐量提升、冲突率下降——这是项目计划书中的关键技术验证数据"
+  },
+  "scene_3d_spec": {
+    "terrain": "概念化高原风格地形（起伏山地、浅色高海拔色调），无需还原真实机场",
+    "layout": {
+      "micro_drone_apron": "网格状小型停机位区，靠近场区一侧",
+      "heavy_drone_apron": "大间距独立停机位",
+      "cargo_runway": "一条带跑道标线、编号和灯光的滑跑跑道",
+      "control_tower": "场区中心的调度塔（视觉地标，标识'无人机运行服务站'）"
+    },
+    "vehicles": [
+      {
+        "type": "quadcopter_micro",
+        "label": "微型四旋翼无人机",
+        "behavior": "垂直起降、短航线、高频次"
+      },
+      {
+        "type": "quadcopter_heavy",
+        "label": "重型多旋翼无人机",
+        "behavior": "垂直起降、慢速、大间隔"
+      },
+      {
+        "type": "fixed_wing_cargo",
+        "label": "固定翼货运无人机",
+        "behavior": "跑道滑跑起降、长航线"
+      }
+    ],
+    "visual_effects": [
+      "无人机沿航线飞行、盘旋等待、降落停机位的连续动画",
+      "飞行冲突事件发生时的高亮告警（红色光圈/警告标记）",
+      "调度指令可视化（可选：从塔台到无人机的指令连线）",
+      "镜头：支持环绕、俯视、塔台视角切换"
+    ],
+    "ui_panel": {
+      "realtime_metrics": ["吞吐量", "平均延误", "冲突次数", "资源利用率"],
+      "controls": ["开始/暂停", "速度调节", "分级模式/混合模式切换", "视角切换"],
+      "note": "指标面板用于答辩时直观展示双模式对比结果"
+    }
+  },
+  "video_spec": {
+    "method": "浏览器自动化截帧（如Playwright/Puppeteer定时截图）+ FFmpeg合成MP4",
+    "segments": [
+      "开场：场景全景环绕，展示分级场地布局",
+      "微型/重型/货运无人机起降与航线运行",
+      "冲突告警演示",
+      "分级 vs 混合模式分屏或连续对比，叠加指标数字",
+      "责任追溯事件回放（可选）"
+    ],
+    "output_format": "MP4, 1080p, 30fps"
+  },
+  "execution_order": [
+    "第1步：搭建仿真引擎 + 基础3D场景（场地布局 + 三类无人机起降循环动画）",
+    "第2步：接入调度逻辑、冲突检测与告警可视化",
+    "第3步：实现分级/混合双模式切换 + 实时指标面板，跑对照实验并记录数据",
+    "第4步：部署在线版本；用自动截帧+FFmpeg录制演示视频"
+  ],
+  "constraints_and_notes": [
+    "不使用AirSim/Gazebo等重型仿真平台，保持轻量、可在普通浏览器运行",
+    "避免使用'塔台'字眼造成空管职权歧义，场景中统一称'无人机运行服务站'",
+    "所有仿真数据须由引擎真实跑出，禁止用纯动画伪造数据",
+    "项目计划书引用仿真结论时，需说明仿真假设与参数"
+  ]
+}

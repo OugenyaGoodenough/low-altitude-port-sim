@@ -1,0 +1,2125 @@
+{
+  "graded": {
+    "scenario": {
+      "id": "s1_graded",
+      "policyId": "graded",
+      "name": "S1 分级管理模式",
+      "short": "分级模式",
+      "load": 1,
+      "rule": "per-class"
+    },
+    "logSummary": {
+      "releases": 1537,
+      "executions": 1537,
+      "deviations": 96,
+      "conflicts": 2,
+      "autopsies": 2
+    },
+    "incidents": [
+      {
+        "incidentId": "CFT-0001",
+        "t": 6477.5,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "M-02（飞手）",
+        "basis": [
+          "M-02: 放行时刻偏离 +7.27s（指令 6469.916s，实际 6477.191s）"
+        ],
+        "chain": [
+          "CMD-1099",
+          "EXE-1100",
+          "CMD-1100",
+          "EXE-1101",
+          "CFT-0001"
+        ]
+      },
+      {
+        "incidentId": "CFT-0002",
+        "t": 7729.36,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "H-03（飞手）",
+        "basis": [
+          "H-03: 放行时刻偏离 +13.89s（指令 7715.469s，实际 7729.36s）"
+        ],
+        "chain": [
+          "CMD-1311",
+          "EXE-1314",
+          "CMD-1307",
+          "EXE-1315",
+          "CFT-0002"
+        ]
+      }
+    ],
+    "logSample": [
+      {
+        "id": "CMD-0001",
+        "t": 30,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 30,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0001",
+        "t": 30,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-01）",
+        "ref": "CMD-0001",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "plannedEntryT": 30,
+        "actualEntryT": 30,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0002",
+        "t": 39,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 39,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0002",
+        "t": 39,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-02）",
+        "ref": "CMD-0002",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "plannedEntryT": 39,
+        "actualEntryT": 39,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0003",
+        "t": 48,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 48,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0003",
+        "t": 48,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-03）",
+        "ref": "CMD-0003",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "plannedEntryT": 48,
+        "actualEntryT": 48,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0004",
+        "t": 57,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 57,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0004",
+        "t": 57,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-04）",
+        "ref": "CMD-0004",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "plannedEntryT": 57,
+        "actualEntryT": 57,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0005",
+        "t": 66,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 66,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0005",
+        "t": 66,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-05）",
+        "ref": "CMD-0005",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "plannedEntryT": 66,
+        "actualEntryT": 66,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0006",
+        "t": 75,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "chId": "L-M1",
+        "dir": "起飞",
+        "plannedEntryT": 75,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0006",
+        "t": 75,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-06）",
+        "ref": "CMD-0006",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "plannedEntryT": 75,
+        "actualEntryT": 75,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0007",
+        "t": 83,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "L-M1",
+        "dir": "着陆",
+        "plannedEntryT": 128,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "CMD-0008",
+        "t": 84,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "chId": "L-M2",
+        "dir": "起飞",
+        "plannedEntryT": 84,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0007",
+        "t": 84,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-07）",
+        "ref": "CMD-0008",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "plannedEntryT": 84,
+        "actualEntryT": 84,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0009",
+        "t": 92,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "L-M1",
+        "dir": "着陆",
+        "plannedEntryT": 137,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "CMD-0010",
+        "t": 93,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "chId": "L-M2",
+        "dir": "起飞",
+        "plannedEntryT": 93,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0008",
+        "t": 93,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-08）",
+        "ref": "CMD-0010",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "plannedEntryT": 93,
+        "actualEntryT": 93,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0011",
+        "t": 96,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 96,
+        "assumedHeadway_s": 90,
+        "assumedSpeed_mps": 35,
+        "rule": "per-class",
+        "note": "按机型分级间隔 90.0s 放行，调度假设航速 35 m/s"
+      },
+      {
+        "id": "EXE-0009",
+        "t": 96,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（C-01）",
+        "ref": "CMD-0011",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "plannedEntryT": 96,
+        "actualEntryT": 96,
+        "dt_s": 0,
+        "actualSpeed_mps": 35,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0012",
+        "t": 101,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "L-M1",
+        "dir": "着陆",
+        "plannedEntryT": 146,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "CMD-0013",
+        "t": 102,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "chId": "L-M2",
+        "dir": "起飞",
+        "plannedEntryT": 102,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 15,
+        "rule": "per-class",
+        "note": "按机型分级间隔 4.0s 放行，调度假设航速 15 m/s"
+      },
+      {
+        "id": "EXE-0010",
+        "t": 102,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-09）",
+        "ref": "CMD-0013",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "plannedEntryT": 102,
+        "actualEntryT": 102,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0014",
+        "t": 105,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-02",
+        "cls": "cargo",
+        "sortie": "C-02/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 186,
+        "assumedHeadway_s": 90,
+        "assumedSpeed_mps": 35,
+        "rule": "per-class",
+        "note": "按机型分级间隔 90.0s 放行，调度假设航速 35 m/s"
+      }
+    ],
+    "metrics": {
+      "scenario": {
+        "id": "s1_graded",
+        "policyId": "graded",
+        "name": "S1 分级管理模式",
+        "short": "分级模式",
+        "load": 1,
+        "rule": "per-class"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 540,
+        "throughput_per_h": 308.6,
+        "avg_delay_s": 5.6,
+        "p95_delay_s": 36,
+        "conflicts": 1,
+        "conflicts_air": 1,
+        "conflicts_ground": 0,
+        "severe_conflicts": 0,
+        "conflicts_per_1000_sorties": 1.85,
+        "pad_utilization_pct": 22.6,
+        "energy_kwh_per_h": 3.6,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 0,
+          "飞手违规": 1
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 459,
+          "throughput_per_h": 262.3,
+          "avg_delay_s": 1.4,
+          "p95_delay_s": 11.2,
+          "avg_wait_depart_s": 0.9,
+          "avg_wait_arrive_s": 0.5,
+          "avg_cycle_s": 137.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 63,
+          "throughput_per_h": 36,
+          "avg_delay_s": 37.5,
+          "p95_delay_s": 53.5,
+          "avg_wait_depart_s": 36.8,
+          "avg_wait_arrive_s": 0.6,
+          "avg_cycle_s": 301.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 18,
+          "throughput_per_h": 10.3,
+          "avg_delay_s": 0,
+          "p95_delay_s": 0,
+          "avg_wait_depart_s": 0,
+          "avg_wait_arrive_s": 0,
+          "avg_cycle_s": 690,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "micro": {
+          "pads": 12,
+          "utilization_pct": 18.8
+        },
+        "heavy": {
+          "pads": 4,
+          "utilization_pct": 39
+        },
+        "cargo": {
+          "pads": 2,
+          "utilization_pct": 12.9
+        }
+      },
+      "channels": {
+        "L-M1": {
+          "label": "微坪通道 1",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 527,
+          "utilization_pct": 66.9
+        },
+        "L-M2": {
+          "label": "微坪通道 2",
+          "owner": "micro",
+          "kind": "lane",
+          "grants": 391,
+          "utilization_pct": 49.7
+        },
+        "L-H1": {
+          "label": "重坪通道",
+          "owner": "heavy",
+          "kind": "lane",
+          "grants": 126,
+          "utilization_pct": 24
+        },
+        "RWY": {
+          "label": "货运跑道",
+          "owner": "cargo",
+          "kind": "runway",
+          "grants": 36,
+          "utilization_pct": 52.5
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0001",
+          "t": 6477.5,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-02（飞手）",
+          "basis": [
+            "M-02: 放行时刻偏离 +7.27s（指令 6469.916s，实际 6477.191s）"
+          ],
+          "chain": [
+            "CMD-1099",
+            "EXE-1100",
+            "CMD-1100",
+            "EXE-1101",
+            "CFT-0001"
+          ]
+        }
+      ],
+      "runtime_ms": 42
+    }
+  },
+  "pooledConservative": {
+    "scenario": {
+      "id": "s2a_pooled_conservative",
+      "policyId": "pooledConservative",
+      "name": "S2 混合管理模式（统一保守规则）",
+      "short": "混合-保守",
+      "load": 1,
+      "rule": "uniform-conservative"
+    },
+    "logSummary": {
+      "releases": 1459,
+      "executions": 1459,
+      "deviations": 91,
+      "conflicts": 182,
+      "autopsies": 182
+    },
+    "incidents": [
+      {
+        "incidentId": "CFT-0022",
+        "t": 1036.24,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "M-05（飞手）",
+        "basis": [
+          "M-05: 放行时刻偏离 +12.24s（指令 1024s，实际 1036.24s）"
+        ],
+        "chain": [
+          "CMD-0161",
+          "EXE-0161",
+          "CMD-0158",
+          "EXE-0162",
+          "CFT-0022"
+        ]
+      },
+      {
+        "incidentId": "CFT-0044",
+        "t": 2198.462,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "M-06（飞手）",
+        "basis": [
+          "M-06: 放行时刻偏离 +12.22s（指令 2186.24s，实际 2198.462s）"
+        ],
+        "chain": [
+          "CMD-0351",
+          "EXE-0349",
+          "CMD-0349",
+          "EXE-0350",
+          "CFT-0044"
+        ]
+      },
+      {
+        "incidentId": "CFT-0084",
+        "t": 3822.572,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "H-01（飞手）",
+        "basis": [
+          "H-01: 放行时刻偏离 +12.33s（指令 3810.24s，实际 3822.572s）"
+        ],
+        "chain": [
+          "CMD-0615",
+          "EXE-0614",
+          "CMD-0609",
+          "EXE-0617",
+          "CFT-0084"
+        ]
+      },
+      {
+        "incidentId": "CFT-0087",
+        "t": 4117.227,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "H-01（飞手）",
+        "basis": [
+          "H-01: 放行时刻偏离 +6.99s（指令 4098.24s，实际 4105.227s）"
+        ],
+        "chain": [
+          "CMD-0660",
+          "EXE-0662",
+          "CMD-0664",
+          "EXE-0663",
+          "CFT-0087"
+        ]
+      },
+      {
+        "incidentId": "CFT-0001",
+        "t": 0,
+        "type": "GROUND_SEPARATION",
+        "typeLabel": "地面停机间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+        ],
+        "chain": [
+          "CFT-0001"
+        ]
+      },
+      {
+        "incidentId": "CFT-0002",
+        "t": 0,
+        "type": "GROUND_SEPARATION",
+        "typeLabel": "地面停机间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+        ],
+        "chain": [
+          "CFT-0002"
+        ]
+      }
+    ],
+    "logSample": [
+      {
+        "id": "CMD-0001",
+        "t": 30,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 30,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0001",
+        "t": 30,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-01）",
+        "ref": "CMD-0001",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "plannedEntryT": 30,
+        "actualEntryT": 30,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0002",
+        "t": 39,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 39,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0002",
+        "t": 39,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-02）",
+        "ref": "CMD-0002",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "plannedEntryT": 39,
+        "actualEntryT": 39,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0003",
+        "t": 48,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 48,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0003",
+        "t": 48,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-03）",
+        "ref": "CMD-0003",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "plannedEntryT": 48,
+        "actualEntryT": 48,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0004",
+        "t": 57,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 57,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0004",
+        "t": 57,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-04）",
+        "ref": "CMD-0004",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "plannedEntryT": 57,
+        "actualEntryT": 57,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0005",
+        "t": 66,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 66,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0005",
+        "t": 66,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-05）",
+        "ref": "CMD-0005",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "plannedEntryT": 66,
+        "actualEntryT": 66,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0006",
+        "t": 75,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 75,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0006",
+        "t": 75,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-06）",
+        "ref": "CMD-0006",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "plannedEntryT": 75,
+        "actualEntryT": 75,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0007",
+        "t": 83,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "G1",
+        "dir": "着陆",
+        "plannedEntryT": 128,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0008",
+        "t": 84,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "chId": "G3",
+        "dir": "起飞",
+        "plannedEntryT": 84,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0007",
+        "t": 84,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-07）",
+        "ref": "CMD-0008",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "plannedEntryT": 84,
+        "actualEntryT": 84,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0009",
+        "t": 92,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "G2",
+        "dir": "着陆",
+        "plannedEntryT": 137,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0010",
+        "t": 93,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 93,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0008",
+        "t": 93,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-08）",
+        "ref": "CMD-0010",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "plannedEntryT": 93,
+        "actualEntryT": 93,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0011",
+        "t": 96,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 105,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0012",
+        "t": 101,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "G1",
+        "dir": "着陆",
+        "plannedEntryT": 146,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0013",
+        "t": 102,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "chId": "G3",
+        "dir": "起飞",
+        "plannedEntryT": 102,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0009",
+        "t": 102,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-09）",
+        "ref": "CMD-0013",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "plannedEntryT": 102,
+        "actualEntryT": 102,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0014",
+        "t": 105,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-02",
+        "cls": "cargo",
+        "sortie": "C-02/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 195,
+        "assumedHeadway_s": 12,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-conservative",
+        "note": "按统一间隔 12.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0010",
+        "t": 105,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（C-01）",
+        "ref": "CMD-0011",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "plannedEntryT": 105,
+        "actualEntryT": 105,
+        "dt_s": 0,
+        "actualSpeed_mps": 35,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      }
+    ],
+    "metrics": {
+      "scenario": {
+        "id": "s2a_pooled_conservative",
+        "policyId": "pooledConservative",
+        "name": "S2 混合管理模式（统一保守规则）",
+        "short": "混合-保守",
+        "load": 1,
+        "rule": "uniform-conservative"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 511,
+        "throughput_per_h": 292,
+        "avg_delay_s": 13.5,
+        "p95_delay_s": 35.9,
+        "conflicts": 118,
+        "conflicts_air": 4,
+        "conflicts_ground": 114,
+        "severe_conflicts": 12,
+        "conflicts_per_1000_sorties": 230.92,
+        "pad_utilization_pct": 24.5,
+        "energy_kwh_per_h": 3.5,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 114,
+          "飞手违规": 4
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 431,
+          "throughput_per_h": 246.3,
+          "avg_delay_s": 10.4,
+          "p95_delay_s": 21.9,
+          "avg_wait_depart_s": 7.2,
+          "avg_wait_arrive_s": 3.2,
+          "avg_cycle_s": 146.4,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 64,
+          "throughput_per_h": 36.6,
+          "avg_delay_s": 28.5,
+          "p95_delay_s": 40,
+          "avg_wait_depart_s": 28.2,
+          "avg_wait_arrive_s": 0.3,
+          "avg_cycle_s": 292.5,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 16,
+          "throughput_per_h": 9.1,
+          "avg_delay_s": 36,
+          "p95_delay_s": 52,
+          "avg_wait_depart_s": 35.3,
+          "avg_wait_arrive_s": 0.6,
+          "avg_cycle_s": 726,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 24.5
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 316,
+          "utilization_pct": 43.8
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 314,
+          "utilization_pct": 42.7
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 302,
+          "utilization_pct": 39.6
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 91,
+          "utilization_pct": 55.7
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0021",
+          "t": 900.188,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 20 m 小于 cargo/heavy 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0021"
+          ]
+        },
+        {
+          "incidentId": "CFT-0022",
+          "t": 1036.24,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-05（飞手）",
+          "basis": [
+            "M-05: 放行时刻偏离 +12.24s（指令 1024s，实际 1036.24s）"
+          ],
+          "chain": [
+            "CMD-0161",
+            "EXE-0161",
+            "CMD-0158",
+            "EXE-0162",
+            "CFT-0022"
+          ]
+        },
+        {
+          "incidentId": "CFT-0023",
+          "t": 1180,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0023"
+          ]
+        },
+        {
+          "incidentId": "CFT-0024",
+          "t": 1180.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0024"
+          ]
+        },
+        {
+          "incidentId": "CFT-0025",
+          "t": 1192.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0025"
+          ]
+        },
+        {
+          "incidentId": "CFT-0026",
+          "t": 1407,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 36.06 m 小于 heavy/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0026"
+          ]
+        }
+      ],
+      "runtime_ms": 56
+    }
+  },
+  "pooledNaive": {
+    "scenario": {
+      "id": "s2b_pooled_naive",
+      "policyId": "pooledNaive",
+      "name": "S2 混合管理模式（统一经验规则）",
+      "short": "混合-经验",
+      "load": 1,
+      "rule": "uniform-naive"
+    },
+    "logSummary": {
+      "releases": 1554,
+      "executions": 1554,
+      "deviations": 98,
+      "conflicts": 174,
+      "autopsies": 174
+    },
+    "incidents": [
+      {
+        "incidentId": "CFT-0009",
+        "t": 192,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+          "实际航速 H-01 10 m/s、M-03 15 m/s",
+          "通道内最小间距 0 m < 要求 20 m"
+        ],
+        "chain": [
+          "CMD-0026",
+          "EXE-0021",
+          "CMD-0027",
+          "EXE-0023",
+          "CFT-0009"
+        ]
+      },
+      {
+        "incidentId": "CFT-0010",
+        "t": 201,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+          "实际航速 H-02 10 m/s、M-04 15 m/s",
+          "通道内最小间距 0 m < 要求 20 m"
+        ],
+        "chain": [
+          "CMD-0028",
+          "EXE-0025",
+          "CMD-0029",
+          "EXE-0027",
+          "CFT-0010"
+        ]
+      },
+      {
+        "incidentId": "CFT-0011",
+        "t": 597,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+          "实际航速 H-02 10 m/s、M-07 15 m/s",
+          "通道内最小间距 15 m < 要求 20 m"
+        ],
+        "chain": [
+          "CMD-0089",
+          "EXE-0091",
+          "CMD-0093",
+          "EXE-0092",
+          "CFT-0011"
+        ]
+      },
+      {
+        "incidentId": "CFT-0015",
+        "t": 723,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+          "实际航速 H-01 10 m/s、M-01 15 m/s",
+          "通道内最小间距 0 m < 要求 20 m"
+        ],
+        "chain": [
+          "CMD-0117",
+          "EXE-0112",
+          "CMD-0118",
+          "EXE-0113",
+          "CFT-0015"
+        ]
+      },
+      {
+        "incidentId": "CFT-0001",
+        "t": 0,
+        "type": "GROUND_SEPARATION",
+        "typeLabel": "地面停机间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+        ],
+        "chain": [
+          "CFT-0001"
+        ]
+      },
+      {
+        "incidentId": "CFT-0002",
+        "t": 0,
+        "type": "GROUND_SEPARATION",
+        "typeLabel": "地面停机间隔侵入",
+        "category": "调度指令错误",
+        "responsible": "无人机运行服务站（调度）",
+        "basis": [
+          "停机位物理间距 10 m 小于 micro/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+        ],
+        "chain": [
+          "CFT-0002"
+        ]
+      },
+      {
+        "incidentId": "CFT-0023",
+        "t": 930,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "M-09（飞手）",
+        "basis": [
+          "M-09: 航速偏离 26%（实际 18.9 m/s）"
+        ],
+        "chain": [
+          "CMD-0155",
+          "EXE-0152",
+          "CMD-0156",
+          "EXE-0153",
+          "CFT-0023"
+        ]
+      },
+      {
+        "incidentId": "CFT-0038",
+        "t": 2196.972,
+        "type": "AIR_SEPARATION",
+        "typeLabel": "空中间隔侵入",
+        "category": "飞手违规",
+        "responsible": "M-03（飞手）",
+        "basis": [
+          "M-03: 航速偏离 18%（实际 17.77 m/s）"
+        ],
+        "chain": [
+          "CMD-0365",
+          "EXE-0370",
+          "CMD-0370",
+          "EXE-0372",
+          "CFT-0038"
+        ]
+      }
+    ],
+    "logSample": [
+      {
+        "id": "CMD-0001",
+        "t": 30,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 30,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0001",
+        "t": 30,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-01）",
+        "ref": "CMD-0001",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "plannedEntryT": 30,
+        "actualEntryT": 30,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0002",
+        "t": 39,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 39,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0002",
+        "t": 39,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-02）",
+        "ref": "CMD-0002",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "plannedEntryT": 39,
+        "actualEntryT": 39,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0003",
+        "t": 48,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 48,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0003",
+        "t": 48,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-03）",
+        "ref": "CMD-0003",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "plannedEntryT": 48,
+        "actualEntryT": 48,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0004",
+        "t": 57,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 57,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0004",
+        "t": 57,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-04）",
+        "ref": "CMD-0004",
+        "ac": "M-04",
+        "cls": "micro",
+        "sortie": "M-04/S1",
+        "plannedEntryT": 57,
+        "actualEntryT": 57,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0005",
+        "t": 66,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 66,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0005",
+        "t": 66,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-05）",
+        "ref": "CMD-0005",
+        "ac": "M-05",
+        "cls": "micro",
+        "sortie": "M-05/S1",
+        "plannedEntryT": 66,
+        "actualEntryT": 66,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0006",
+        "t": 75,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "chId": "G1",
+        "dir": "起飞",
+        "plannedEntryT": 75,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0006",
+        "t": 75,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-06）",
+        "ref": "CMD-0006",
+        "ac": "M-06",
+        "cls": "micro",
+        "sortie": "M-06/S1",
+        "plannedEntryT": 75,
+        "actualEntryT": 75,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0007",
+        "t": 83,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-01",
+        "cls": "micro",
+        "sortie": "M-01/S1",
+        "chId": "G1",
+        "dir": "着陆",
+        "plannedEntryT": 128,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0008",
+        "t": 84,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 84,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0007",
+        "t": 84,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-07）",
+        "ref": "CMD-0008",
+        "ac": "M-07",
+        "cls": "micro",
+        "sortie": "M-07/S1",
+        "plannedEntryT": 84,
+        "actualEntryT": 84,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0009",
+        "t": 92,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-02",
+        "cls": "micro",
+        "sortie": "M-02/S1",
+        "chId": "G1",
+        "dir": "着陆",
+        "plannedEntryT": 137,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0010",
+        "t": 93,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 93,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0008",
+        "t": 93,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-08）",
+        "ref": "CMD-0010",
+        "ac": "M-08",
+        "cls": "micro",
+        "sortie": "M-08/S1",
+        "plannedEntryT": 93,
+        "actualEntryT": 93,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0011",
+        "t": 96,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 96,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0009",
+        "t": 96,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（C-01）",
+        "ref": "CMD-0011",
+        "ac": "C-01",
+        "cls": "cargo",
+        "sortie": "C-01/S1",
+        "plannedEntryT": 96,
+        "actualEntryT": 96,
+        "dt_s": 0,
+        "actualSpeed_mps": 35,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0012",
+        "t": 101,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-03",
+        "cls": "micro",
+        "sortie": "M-03/S1",
+        "chId": "G1",
+        "dir": "着陆",
+        "plannedEntryT": 146,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "CMD-0013",
+        "t": 102,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "chId": "G2",
+        "dir": "起飞",
+        "plannedEntryT": 102,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      },
+      {
+        "id": "EXE-0010",
+        "t": 102,
+        "kind": "PILOT_EXEC",
+        "actor": "飞手（M-09）",
+        "ref": "CMD-0013",
+        "ac": "M-09",
+        "cls": "micro",
+        "sortie": "M-09/S1",
+        "plannedEntryT": 102,
+        "actualEntryT": 102,
+        "dt_s": 0,
+        "actualSpeed_mps": 15,
+        "dv": 0,
+        "verdict": "ADHERE",
+        "deviationType": "ADHERE"
+      },
+      {
+        "id": "CMD-0014",
+        "t": 105,
+        "kind": "RELEASE",
+        "actor": "无人机运行服务站（调度）",
+        "ac": "C-02",
+        "cls": "cargo",
+        "sortie": "C-02/S1",
+        "chId": "RWY",
+        "dir": "起飞",
+        "plannedEntryT": 186,
+        "assumedHeadway_s": 4,
+        "assumedSpeed_mps": 10,
+        "rule": "uniform-naive",
+        "note": "按统一间隔 4.0s 放行，调度假设航速 10 m/s"
+      }
+    ],
+    "metrics": {
+      "scenario": {
+        "id": "s2b_pooled_naive",
+        "policyId": "pooledNaive",
+        "name": "S2 混合管理模式（统一经验规则）",
+        "short": "混合-经验",
+        "load": 1,
+        "rule": "uniform-naive"
+      },
+      "seed": 20260930,
+      "window": {
+        "warmup_s": 900,
+        "horizon_s": 7200,
+        "hours": 1.75
+      },
+      "fleet": {
+        "micro": 10,
+        "heavy": 3,
+        "cargo": 2
+      },
+      "totals": {
+        "sorties": 546,
+        "throughput_per_h": 312,
+        "avg_delay_s": 2.2,
+        "p95_delay_s": 14,
+        "conflicts": 114,
+        "conflicts_air": 21,
+        "conflicts_ground": 93,
+        "severe_conflicts": 22,
+        "conflicts_per_1000_sorties": 208.79,
+        "pad_utilization_pct": 21.8,
+        "energy_kwh_per_h": 3.8,
+        "energy_kwh_per_sortie": 0.01,
+        "grid_kwh_per_h": 0,
+        "pv_kwh_per_h": 0,
+        "storage_kwh_per_h": 0,
+        "cost_yuan_per_h": 0,
+        "charge_events": 0,
+        "avg_charge_s": 0,
+        "avg_charge_queue_s": 0,
+        "charger_utilization_pct": 0,
+        "accountability": {
+          "调度指令错误": 108,
+          "飞手违规": 6
+        }
+      },
+      "byClass": {
+        "micro": {
+          "label": "微型四旋翼无人机",
+          "fleet": 10,
+          "sorties": 459,
+          "throughput_per_h": 262.3,
+          "avg_delay_s": 1.3,
+          "p95_delay_s": 10.4,
+          "avg_wait_depart_s": 1,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 137.3,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 136
+        },
+        "heavy": {
+          "label": "重型多旋翼无人机",
+          "fleet": 3,
+          "sorties": 69,
+          "throughput_per_h": 39.4,
+          "avg_delay_s": 6.9,
+          "p95_delay_s": 34.4,
+          "avg_wait_depart_s": 5.7,
+          "avg_wait_arrive_s": 1.1,
+          "avg_cycle_s": 270.9,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 264
+        },
+        "cargo": {
+          "label": "固定翼货运无人机",
+          "fleet": 2,
+          "sorties": 18,
+          "throughput_per_h": 10.3,
+          "avg_delay_s": 8,
+          "p95_delay_s": 52.5,
+          "avg_wait_depart_s": 7.6,
+          "avg_wait_arrive_s": 0.4,
+          "avg_cycle_s": 698,
+          "avg_charge_s": 0,
+          "avg_charge_queue_s": 0,
+          "ideal_cycle_s": 690
+        }
+      },
+      "padUtilization": {
+        "generic": {
+          "pads": 18,
+          "utilization_pct": 21.8
+        }
+      },
+      "channels": {
+        "G1": {
+          "label": "通用通道 1",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 408,
+          "utilization_pct": 56.3
+        },
+        "G2": {
+          "label": "通用通道 2",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 385,
+          "utilization_pct": 49.9
+        },
+        "G3": {
+          "label": "通用通道 3",
+          "owner": "any",
+          "kind": "lane",
+          "grants": 254,
+          "utilization_pct": 35.1
+        },
+        "RWY": {
+          "label": "共用跑道",
+          "owner": "any",
+          "kind": "runway",
+          "grants": 48,
+          "utilization_pct": 53.6
+        }
+      },
+      "incidents": [
+        {
+          "incidentId": "CFT-0023",
+          "t": 930,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "飞手违规",
+          "responsible": "M-09（飞手）",
+          "basis": [
+            "M-09: 航速偏离 26%（实际 18.9 m/s）"
+          ],
+          "chain": [
+            "CMD-0155",
+            "EXE-0152",
+            "CMD-0156",
+            "EXE-0153",
+            "CFT-0023"
+          ]
+        },
+        {
+          "incidentId": "CFT-0024",
+          "t": 1127,
+          "type": "AIR_SEPARATION",
+          "typeLabel": "空中间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "放行指令按统一间隔 4s、标称航速 10 m/s 计算，未区分机型速度差异",
+            "实际航速 H-02 10 m/s、M-04 15 m/s",
+            "通道内最小间距 3.61 m < 要求 20 m"
+          ],
+          "chain": [
+            "CMD-0180",
+            "EXE-0182",
+            "CMD-0183",
+            "EXE-0183",
+            "CFT-0024"
+          ]
+        },
+        {
+          "incidentId": "CFT-0025",
+          "t": 1386,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 20 m 小于 micro/cargo 机型要求的 40 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0025"
+          ]
+        },
+        {
+          "incidentId": "CFT-0026",
+          "t": 1391,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/heavy 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0026"
+          ]
+        },
+        {
+          "incidentId": "CFT-0027",
+          "t": 1399.24,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 10 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0027"
+          ]
+        },
+        {
+          "incidentId": "CFT-0028",
+          "t": 1404.514,
+          "type": "GROUND_SEPARATION",
+          "typeLabel": "地面停机间隔侵入",
+          "category": "调度指令错误",
+          "responsible": "无人机运行服务站（调度）",
+          "basis": [
+            "停机位物理间距 14.14 m 小于 heavy/micro 机型要求的 20 m，调度分配未按机型间隔要求分区"
+          ],
+          "chain": [
+            "CFT-0028"
+          ]
+        }
+      ],
+      "runtime_ms": 29
+    }
+  }
+}

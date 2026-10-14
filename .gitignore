@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.tmp/
+public/shots/
+*.log
+.DS_Store
+Thumbs.db
+
+# GitHub Actions 部署脚本（token 无 workflow scope，暂不上推）
+.github/

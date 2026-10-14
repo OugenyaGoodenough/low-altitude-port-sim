@@ -1,0 +1,139 @@
+{
+  "kind": "static-site-deployment",
+  "schemaVersion": 1,
+  "generatedBy": "Kimi Code（无人机机场仿真项目交付）",
+  "generatedAt": "2026-09-30",
+  "project": {
+    "name": "低空港——无人机分级运行管理与责任追溯系统（仿真演示模块）",
+    "slug": "low-altitude-port-sim",
+    "rootDir": ".",
+    "type": "web_app",
+    "backend": "none",
+    "description": "基于 Three.js 的浏览器端 3D 动态仿真，无后端依赖，仿真逻辑全部在前端运行；可直接静态托管。"
+  },
+  "build": {
+    "packageManager": "npm",
+    "nodeVersion": ">=20",
+    "installCommand": "npm ci",
+    "buildCommand": "npm run build",
+    "outputDir": "dist",
+    "basePath": "./",
+    "envVars": [],
+    "notes": [
+      "vite.config.js 已设置 base='./'，产物可部署到任意根路径或子路径（如 GitHub Pages 的 /<repo>/）。",
+      "public/results/ 与 public/demo/ 会被原样拷贝进 dist，无需额外构建步骤。",
+      "构建不依赖任何密钥或环境变量。"
+    ]
+  },
+  "artifacts": {
+    "entry": "dist/index.html",
+    "required": [
+      "dist/index.html",
+      "dist/assets/*",
+      "dist/results/experiment.json",
+      "dist/results/experiment.csv",
+      "dist/results/incidents.json"
+    ],
+    "optional": [
+      "dist/demo/low-altitude-port-demo.mp4"
+    ],
+    "notes": [
+      "dist/results/*.json 是仿真引擎跑出的对照实验数据（12 组：3 策略 × 4 负荷），页面左侧对照表会 fetch 其中的 experiment.json；缺失会导致对照表为空。",
+      "dist/demo/*.mp4 为演示视频（约 30-40 MB），仅用于在线下载/播放；若托管平台有单文件或体积限制，可从产物中排除。"
+    ]
+  },
+  "runtime": {
+    "requiresBackend": false,
+    "requiresHttps": false,
+    "urlParameters": {
+      "policy": "graded | pooledConservative | pooledNaive（默认 graded）",
+      "load": "0.6 ~ 2.0（默认 1.2，相对规划负荷的机队规模倍数）",
+      "seed": "整数随机种子（默认 20260930，固定种子保证结果可复现）",
+      "record": "1 = 录屏模式（关闭自带时钟，只响应 window.__sim.renderAt）",
+      "ui": "0 = 隐藏全部 UI 面板（用于干净画面截帧）",
+      "t": "初始仿真时刻（秒）"
+    },
+    "programmaticApi": "window.__sim（renderAt/setMode/setView/setCaption/highlightIncident/meta 等），供自动化录屏与二次开发使用"
+  },
+  "targets": [
+    {
+      "id": "github-pages",
+      "recommended": true,
+      "reason": "仓库内已提供 .github/workflows/deploy.yml，推送到 main 后自动构建并发布，无需本地打包上传。",
+      "steps": [
+        "1. 在 GitHub 新建仓库（建议 public），仓库名例如 low-altitude-port-sim。",
+        "2. 本地若尚未初始化 git：git init -b main && git add . && git commit -m \"无人机分级运行管理仿真演示\"，然后 git remote add origin <repo-url>，git push -u origin main。",
+        "3. 仓库 Settings → Pages → Source 选择 'GitHub Actions'。",
+        "4. 等待 Actions 中的 'Deploy to GitHub Pages' 工作流完成（约 1-2 分钟）。",
+        "5. 访问 https://<用户名>.github.io/<仓库名>/ 验证。"
+      ],
+      "url": "https://<user>.github.io/<repo>/",
+      "notes": [
+        "workflow 内使用 actions/configure-pages + upload-pages-artifact + deploy-pages，构建命令为 npm ci && npm run build，产物路径 dist。",
+        "若希望改为手动上传：本地 npm run build 后，把 dist/ 内容推到 gh-pages 分支，并在 Pages 里选择该分支根目录即可。"
+      ]
+    },
+    {
+      "id": "vercel",
+      "steps": [
+        "1. vercel --prod（或网页端 Import Git Repository）。",
+        "2. Framework Preset 选 Vite；Build Command: npm run build；Output Directory: dist。",
+        "3. 无需环境变量。"
+      ],
+      "url": "https://<project>.vercel.app/"
+    },
+    {
+      "id": "netlify",
+      "steps": [
+        "1. Build command: npm run build；Publish directory: dist。",
+        "2. 或直接拖拽 dist/ 到 Netlify Drop。"
+      ],
+      "url": "https://<project>.netlify.app/"
+    },
+    {
+      "id": "oss-cos-ncos",
+      "steps": [
+        "1. 本地执行 npm run build。",
+        "2. 将 dist/ 内全部文件上传到对象存储桶根目录，开启静态网站托管。"
+      ],
+      "notes": ["因为 base='./'，放在桶根目录或子目录均可正常加载资源。"]
+    },
+    {
+      "id": "offline-local",
+      "steps": [
+        "1. npm ci && npm run build。",
+        "2. 答辩现场无网络时：npm run preview（http://localhost:4173），或用任意静态服务器指向 dist/。",
+        "3. 注意：直接双击 dist/index.html 以 file:// 打开会因浏览器模块加载策略失败，必须经由 HTTP 服务。"
+      ]
+    }
+  ],
+  "verification": {
+    "steps": [
+      "1. HTTP 200 且标题含“低空港”：curl -sI <url> / 页面 title 检查。",
+      "2. 页面出现 <canvas>，且 window.__sim.ready() 在 30 秒内返回 true。",
+      "3. 无控制台报错（pageerror / console.error 均为空）。",
+      "4. 对照实验数据可达：GET <url>/results/experiment.json 返回 12 条 results 记录。",
+      "5. 交互自检：window.__sim.setMode('pooledNaive') 后 ready() 仍为 true；renderAt(1500) 返回 true。"
+    ],
+    "expected": {
+      "title": "低空港",
+      "canvas": true,
+      "resultsJsonRecords": 12,
+      "consoleErrors": 0
+    }
+  },
+  "agentInstructions": [
+    "这是一个纯静态 Vite 站点，不需要任何后端、数据库或环境变量。",
+    "部署前请先确认 `npm ci && npm run build` 在仓库根目录成功（Node >= 20）。",
+    "若使用 GitHub Actions 路线，无需提交 dist/（workflow 会现场构建）；若使用手动上传路线，则只需要 dist/ 内的文件。",
+    "仓库中的 node_modules/、.tmp/、public/shots/ 不应提交（已由 .gitignore 排除）。",
+    "部署完成后请按 verification.steps 逐条核验，并把最终 URL 回报给用户。",
+    "如果托管平台有 25 MB 单文件限制，请先删除 dist/demo/ 下的 mp4 再上传，并在回复中说明视频改为离线提供。"
+  ],
+  "exclusions": [
+    "node_modules/",
+    ".tmp/",
+    "public/shots/",
+    "dist/（走 Actions 构建时可忽略）"
+  ]
+}
