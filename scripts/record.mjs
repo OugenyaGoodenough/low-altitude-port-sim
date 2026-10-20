@@ -30,75 +30,85 @@ const dryRun = argv.includes('--dry');
 const dryFrames = dryRun ? Number(argv[argv.indexOf('--dry') + 1] || 60) : 0;
 const outFile = resolve(root, process.env.OUT ?? 'public/demo/low-altitude-port-demo.mp4');
 
-/** 分镜表：view ∈ orbit|top|station|follow，rate = 每个视频秒推进的仿真秒数 */
+/** 分镜表：view ∈ orbit|top|station|follow，rate = 每个视频秒推进的仿真秒数
+ *  可选字段：charge（充电模式 off/slow/fast/swap）、chargers（桩数）、supply（供电 grid/pv/pv_storage） */
 const SEGMENTS = [
   {
     id: '01-open', policy: 'graded', load: LOAD, view: 'orbit', t0: 1500, rate: 3, dur: 11,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
     caption: {
-      title: '低空港 · 无人机分级运行管理与责任追溯系统',
-      subtitle: 'S1 分级管理模式：三类无人机使用各自专属场地资源（微坪 / 重坪 / 货运跑道）',
+      title: '低空港 · 面向节能减排的运行仿真',
+      subtitle: 'eVTOL / 无人机垂直起降场：机型级能耗模型 · 停机坪充电设施 · 光伏储能供电',
     },
   },
   {
     id: '02-graded-ops', policy: 'graded', load: LOAD, view: 'top', t0: 2400, rate: 4, dur: 13,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
     caption: {
       title: '分级运行：三类无人机并行起降与航线运行',
       subtitle: '微型机高频次垂直起降 · 重型机大间隔运行 · 货运机滑跑起降（货运跑道 420 m）',
     },
   },
   {
-    id: '03-graded-follow', policy: 'graded', load: LOAD, view: 'follow', followCls: 'micro', t0: 3200, rate: 2, dur: 12,
+    id: '03-energy-model', policy: 'graded', load: LOAD, view: 'follow', followCls: 'micro', t0: 3200, rate: 2, dur: 12,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
     caption: {
-      title: '运行服务站放行指令可视化',
-      subtitle: '调度指令（CMD）→ 飞手执行（EXE）→ 航线运行，全程写入责任追溯日志链',
-    },
-  },
-  {
-    id: '04-cargo-station', policy: 'graded', load: LOAD, view: 'station', t0: 4200, rate: 3, dur: 10,
-    caption: {
-      title: '无人机运行服务站',
-      subtitle: '对应方案中的低空运行服务站：排序放行、间隔控制、冲突消解',
-    },
-  },
-  {
-    id: '05-mixed-naive-conflict', policy: 'pooledNaive', load: LOAD, view: 'top', anchor: 'conflict_air', rate: 1, dur: 13,
-    caption: {
-      title: '混合管理（统一经验间隔 4 s）· 冲突告警',
-      subtitle: '未区分机型速度差异 → 快速机型追尾，实测间距低于机型安全间隔 → 红色告警',
-    },
-  },
-  {
-    id: '06-mixed-trace', policy: 'pooledNaive', load: LOAD, view: 'orbit', anchor: 'conflict_air', offset: -3, rate: 1, dur: 12,
-    highlight: 'conflict_air',
-    caption: {
-      title: '责任追溯：冲突事件自动回溯日志链',
-      subtitle: 'CFT ← EXE ← CMD，区分"调度指令错误"与"飞手违规"',
-    },
-  },
-  {
-    id: '07-mixed-ground', policy: 'pooledConservative', load: LOAD, view: 'top', anchor: 'conflict_ground', rate: 2, dur: 10,
-    caption: {
-      title: '混合管理（统一保守间隔 12 s）· 效率代价',
-      subtitle: '通用场地停机位间距 10 m 不满足重型/货运机型间隔要求 → 地面间隔侵入',
-    },
-  },
-  {
-    id: '08-compare', policy: 'graded', load: LOAD, view: 'orbit', t0: 5400, rate: 5, dur: 12,
-    caption: {
-      title: '对照实验结论：吞吐量、延误、冲突率',
-      subtitle: '同物理设施下：分级模式吞吐量更高、平均延误更低、冲突数量级下降',
+      title: '机型级能耗模型',
+      subtitle: '任务电耗 ∝ 重量 × 速度剖面 × 爬升率，按机型分模型，取代"统一平均电耗"假设',
       metrics: [
-        ['S1 分级模式', '吞吐 308.6 架次/h · 延误 5.6 s · 冲突 1'],
-        ['S2 混合-保守 12s', '吞吐 292.0 架次/h · 延误 13.5 s · 冲突 118'],
-        ['S2 混合-经验 4s', '吞吐 312.0 架次/h · 延误 2.2 s · 冲突 114'],
+        ['微型机 M 系列', '任务能耗 10.8 kWh/h · 含起降爬升与巡航段'],
+        ['重型机 H 系列', '能耗权重随载重与爬升率上浮'],
       ],
     },
   },
   {
-    id: '09-end', policy: 'graded', load: LOAD, view: 'orbit', t0: 6200, rate: 4, dur: 9,
+    id: '04-charging-apron', policy: 'graded', load: LOAD, view: 'station', t0: 4200, rate: 3, dur: 12,
+    charge: 'fast', chargers: 4, supply: 'grid',
     caption: {
-      title: '低空港 · 无人机分级运行管理与责任追溯系统',
-      subtitle: '仿真数据全部由离散事件引擎跑出；完整指标见 results/experiment.csv',
+      title: '停机坪充电设施',
+      subtitle: '4 × 快充 30 kW 桩：SOC 与充电排队耦合进周转时间，决定可用机队规模',
+    },
+  },
+  {
+    id: '05-soc-queue', policy: 'graded', load: LOAD, view: 'follow', followCls: 'micro', t0: 4800, rate: 2, dur: 10,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
+    caption: {
+      title: '充电时间耦合进周转时间',
+      subtitle: '任务回港 → 充电 → 再出港：快充 30 kW 充电时长显著短于慢充 3 kW（约 10 倍）',
+    },
+  },
+  {
+    id: '06-supply-switch', policy: 'graded', load: LOAD, view: 'orbit', t0: 5200, rate: 3, dur: 12,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
+    caption: {
+      title: '供电方案：光伏 + 储能削峰填谷',
+      subtitle: '用电成本：纯市电 39.15 → 光伏 28.48 → 光伏+储能 24.96 元/h（购电降 36%）',
+      metrics: [
+        ['纯市电', '39.15 元/h · 全部购自电网'],
+        ['光伏 10 kWp', '28.48 元/h · 自发自用'],
+        ['光伏 + 储能 10 kWh', '24.96 元/h · 削峰填谷'],
+      ],
+    },
+  },
+  {
+    id: '07-experiment', policy: 'graded', load: LOAD, view: 'orbit', t0: 5600, rate: 5, dur: 12,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
+    caption: {
+      title: '因子实验结论：桩数 × 补能策略 × 供电（56 组）',
+      subtitle: '吞吐保持率 ≥ 99% 约束下：快充 4 台即最优，慢充 / 换电 8 台仍保不住吞吐',
+      metrics: [
+        ['快充 30kW × 4 台', '吞吐 550.9/h · 保持率 99.0%'],
+        ['慢充 3kW × 8 台', '吞吐 451.4/h · 保持率 81.1%'],
+        ['换电 2min × 8 台', '吞吐 239.4/h · 保持率 43.0%'],
+      ],
+    },
+  },
+  {
+    id: '08-end', policy: 'graded', load: LOAD, view: 'orbit', t0: 6200, rate: 4, dur: 10,
+    charge: 'fast', chargers: 4, supply: 'pv_storage',
+    caption: {
+      title: '结论：快充 30 kW × 4 台 + 光伏 10 kWp + 储能 10 kWh',
+      subtitle: '吞吐保持 99%，电网购电降低 36%，避免过度建设（桩利用率 13.6% 即封顶）',
     },
   },
 ];
@@ -173,7 +183,13 @@ page.on('pageerror', (e) => errors.push(`pageerror: ${e.message}`));
 page.on('console', (m) => { if (m.type() === 'error') errors.push(`console: ${m.text()}`); });
 
 async function openSegment(seg) {
-  const url = `${BASE}/?policy=${seg.policy}&load=${seg.load}&seed=${SEED}&record=1&t=0`;
+  const q = new URLSearchParams({
+    policy: seg.policy, load: String(seg.load), seed: String(SEED), record: '1', t: '0',
+  });
+  if (seg.charge) q.set('charge', seg.charge);
+  if (seg.chargers) q.set('chargers', String(seg.chargers));
+  if (seg.supply) q.set('supply', seg.supply);
+  const url = `${BASE}/?${q}`;
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction('window.__sim && window.__sim.ready()', null, { timeout: 60000 });
   await page.evaluate(() => window.__sim.setRecordMode(true));
